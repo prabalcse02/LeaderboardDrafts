@@ -6,62 +6,99 @@ const config: Config = {
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
+        // ── upscpath.com semantic tokens (dark mode values, our default) ──────
+        bg:       'var(--bg)',
+        surface:  'var(--surface)',
+        elevated: 'var(--elevated)',
+        border:   'var(--border)',
+        text:     'var(--text)',
+        'text-2': 'var(--text-2)',
+        'text-3': 'var(--text-3)',
+
+        // ── Brand palette (upscpath.com exact tokens) ─────────────────────────
+        amber: {
+          DEFAULT: 'var(--amber)',
+          hover:   'var(--amber-hover)',
+          tint:    'var(--amber-tint)',
+          on:      'var(--amber-on)',
+        },
+        terra: {
+          DEFAULT: 'var(--terra)',
+          tint:    'var(--terra-tint)',
+        },
+        accent: {
+          DEFAULT: 'var(--accent)',
+          hover:   'var(--accent-hover)',
+          tint:    'var(--accent-tint)',
+          on:      'var(--accent-on)',
+        },
+        success: {
+          DEFAULT: 'var(--success)',
+          tint:    'var(--success-tint)',
+        },
+        warning: {
+          DEFAULT: 'var(--warning)',
+          tint:    'var(--warning-tint)',
+        },
+        error: {
+          DEFAULT: 'var(--error)',
+          tint:    'var(--error-tint)',
+        },
+
+        // ── Legacy aliases kept for backward compat ────────────────────────────
         saffron: {
           50:  '#fff8f0',
           100: '#ffecd1',
           200: '#ffd494',
           300: '#ffb84d',
-          400: '#ff9a1f',
-          500: '#ff7c00',
-          600: '#e05f00',
+          400: 'var(--amber)',      // remapped to upscpath amber
+          500: 'var(--amber)',
+          600: 'var(--amber-hover)',
           700: '#b84400',
-          800: '#943400',
-          900: '#792b00',
         },
         navy: {
-          50:  '#eef2ff',
-          100: '#d4defd',
-          200: '#aabefb',
-          300: '#7094f8',
-          400: '#3e64f3',
-          500: '#1a3de4',
-          600: '#1230c4',
-          700: '#0d229e',
-          800: '#0a1a7a',
-          900: '#060f52',
-          950: '#03082e',
+          900:  '#1e1c1a',
+          950:  'var(--bg)',
         },
         jade: {
-          400: '#22c55e',
-          500: '#16a34a',
-          600: '#15803d',
+          400: 'var(--success)',
+          500: 'var(--success)',
         },
       },
+
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'monospace'],
+        sans:    ['Inter', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
+        heading: ['"DM Serif Display"', 'Georgia', 'serif'],
+        mono:    ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
       },
+
+      borderRadius: {
+        'md':  '0.375rem',
+        'lg':  '0.5rem',
+        'xl':  '0.75rem',
+        '2xl': '1rem',
+        '3xl': '1.5rem',
+      },
+
       animation: {
-        'pulse-fast': 'pulse 0.8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'pulse-fast':  'pulse 0.8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'bounce-slow': 'bounce 2s infinite',
-        'xp-fill': 'xpFill 0.6s ease-out forwards',
-        'float': 'float 3s ease-in-out infinite',
+        'float':       'float 3s ease-in-out infinite',
       },
+
       keyframes: {
-        xpFill: {
-          '0%': { width: '0%' },
-          '100%': { width: 'var(--xp-width)' },
-        },
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-8px)' },
+          '50%':      { transform: 'translateY(-6px)' },
         },
       },
     },
   },
   plugins: [],
 }
+
 export default config

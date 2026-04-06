@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { X, Swords, Target, CheckCircle2, BookOpen } from 'lucide-react'
+import { X, Swords, Target, BookOpen } from 'lucide-react'
 import { LEVEL_TITLES } from '@/lib/game/levels'
 import { SUBJECTS } from '@/lib/data/subjects'
 import type { LeaderboardEntry } from '@/types'
@@ -15,10 +15,8 @@ interface PlayerCardProps {
 export default function PlayerCard({ entry, onClose }: PlayerCardProps) {
   const levelTitle = LEVEL_TITLES[entry.level] ?? 'Aspirant'
   const avatarSeed = encodeURIComponent(entry.displayName)
-
   const gsSubjects = SUBJECTS.filter((s) => s.paper === 'GS-I')
 
-  // Build radar data
   const targetData = gsSubjects.map(() => 1.0)
   const actualData = gsSubjects.map((s) => (entry.subjectScores[s.id]?.accuracyPct ?? 0) / 100)
 
@@ -28,28 +26,30 @@ export default function PlayerCard({ entry, onClose }: PlayerCardProps) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 10 }}
       transition={{ duration: 0.3 }}
-      className="glass rounded-2xl p-6 border border-white/15 space-y-6"
+      className="card rounded-2xl p-6 space-y-6"
+      style={{ border: '1px solid var(--border)' }}
     >
       {/* Header */}
       <div className="flex items-start justify-between">
         <div className="flex items-center gap-4">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={`https://api.dicebear.com/7.x/initials/svg?seed=${avatarSeed}&backgroundColor=1a3de4&textColor=ffffff`}
+            src={`https://api.dicebear.com/7.x/initials/svg?seed=${avatarSeed}&backgroundColor=3c5d4d&textColor=ffffff`}
             alt={entry.displayName}
-            width={64}
-            height={64}
-            className="rounded-2xl border-2 border-white/20"
+            width={64} height={64}
+            className="rounded-2xl"
+            style={{ border: '2px solid var(--border)' }}
           />
           <div>
-            <h3 className="text-xl font-bold text-white">{entry.displayName}</h3>
+            <h3 className="text-xl font-bold" style={{ color: 'var(--text)' }}>{entry.displayName}</h3>
             <div className="flex items-center gap-2 mt-1">
-              <span className="px-2 py-0.5 rounded-md bg-saffron-500/20 text-saffron-400 text-xs font-bold border border-saffron-500/30">
+              <span className="px-2 py-0.5 rounded-md text-xs font-bold border"
+                style={{ background: 'var(--amber-tint)', color: 'var(--amber)', borderColor: 'color-mix(in oklab, var(--amber) 30%, transparent)' }}>
                 Level {entry.level}
               </span>
-              <span className="text-white/50 text-sm">{levelTitle}</span>
+              <span className="text-sm" style={{ color: 'var(--text-3)' }}>{levelTitle}</span>
             </div>
-            <div className="flex items-center gap-4 mt-2 text-xs text-white/40">
+            <div className="flex items-center gap-4 mt-2 text-xs" style={{ color: 'var(--text-3)' }}>
               <span>{entry.totalXp.toLocaleString()} XP</span>
               <span>{entry.accuracyPct}% accuracy</span>
               <span>{entry.totalSessions} sessions</span>
@@ -57,10 +57,11 @@ export default function PlayerCard({ entry, onClose }: PlayerCardProps) {
           </div>
         </div>
 
-        <button
-          onClick={onClose}
-          className="p-2 rounded-lg hover:bg-white/10 text-white/40 hover:text-white transition-colors"
-        >
+        <button onClick={onClose}
+          className="p-2 rounded-lg transition-colors"
+          style={{ color: 'var(--text-3)' }}
+          onMouseEnter={e => (e.currentTarget.style.background = 'var(--surface)')}
+          onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}>
           <X className="w-5 h-5" />
         </button>
       </div>
@@ -69,7 +70,7 @@ export default function PlayerCard({ entry, onClose }: PlayerCardProps) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Radar chart */}
         <div>
-          <h4 className="text-sm font-semibold text-white/60 mb-3 flex items-center gap-2">
+          <h4 className="text-sm font-semibold mb-3 flex items-center gap-2" style={{ color: 'var(--text-2)' }}>
             <Target className="w-4 h-4" />
             Subject Coverage
           </h4>
@@ -84,52 +85,34 @@ export default function PlayerCard({ entry, onClose }: PlayerCardProps) {
 
         {/* Subject breakdown */}
         <div>
-          <h4 className="text-sm font-semibold text-white/60 mb-3 flex items-center gap-2">
+          <h4 className="text-sm font-semibold mb-3 flex items-center gap-2" style={{ color: 'var(--text-2)' }}>
             <BookOpen className="w-4 h-4" />
             Subject Breakdown
           </h4>
           <div className="space-y-3">
             {gsSubjects.map((subject) => {
-              const score = entry.subjectScores[subject.id]
+              const score    = entry.subjectScores[subject.id]
               const accuracy = score?.accuracyPct ?? 0
               const attempted = score?.totalAttempted ?? 0
-              const correct = score?.totalCorrect ?? 0
+              const correct   = score?.totalCorrect ?? 0
+              const accColor  = accuracy >= 70 ? 'var(--success)' : accuracy >= 50 ? 'var(--warning)' : attempted === 0 ? 'var(--text-3)' : 'var(--error)'
+              const barColor  = accuracy >= 70 ? 'var(--success)' : accuracy >= 50 ? 'var(--warning)' : attempted === 0 ? 'var(--border)' : 'var(--error)'
 
               return (
                 <div key={subject.id} className="space-y-1">
                   <div className="flex items-center justify-between text-xs">
-                    <span className="text-white/70 flex items-center gap-1.5">
+                    <span className="flex items-center gap-1.5" style={{ color: 'var(--text-2)' }}>
                       <span>{subject.icon}</span>
                       <span className="truncate max-w-[120px]">{subject.name.split('&')[0].trim()}</span>
                     </span>
                     <div className="flex items-center gap-2 shrink-0">
-                      <span className="text-white/40">{correct}/{attempted}</span>
-                      <span
-                        className={
-                          accuracy >= 70
-                            ? 'text-jade-400 font-bold'
-                            : accuracy >= 50
-                            ? 'text-amber-400 font-semibold'
-                            : 'text-rose-400 font-semibold'
-                        }
-                      >
-                        {accuracy}%
-                      </span>
+                      <span style={{ color: 'var(--text-3)' }}>{correct}/{attempted}</span>
+                      <span className="font-bold" style={{ color: accColor }}>{accuracy}%</span>
                     </div>
                   </div>
-                  <div className="h-1.5 bg-white/8 rounded-full overflow-hidden">
-                    <div
-                      className={`h-full rounded-full transition-all duration-500 ${
-                        accuracy >= 70
-                          ? 'bg-jade-500'
-                          : accuracy >= 50
-                          ? 'bg-amber-500'
-                          : attempted === 0
-                          ? 'bg-white/20'
-                          : 'bg-rose-500'
-                      }`}
-                      style={{ width: `${accuracy}%` }}
-                    />
+                  <div className="h-1.5 rounded-full overflow-hidden" style={{ background: 'var(--surface)' }}>
+                    <div className="h-full rounded-full transition-all duration-500"
+                      style={{ width: `${accuracy}%`, background: barColor }} />
                   </div>
                 </div>
               )
@@ -139,15 +122,17 @@ export default function PlayerCard({ entry, onClose }: PlayerCardProps) {
       </div>
 
       {/* Challenge button */}
-      <div className="flex justify-end pt-2 border-t border-white/8">
+      <div className="flex justify-end pt-2" style={{ borderTop: '1px solid var(--border)' }}>
         <button
-          disabled
-          title="Coming soon!"
-          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white/30 text-sm font-medium cursor-not-allowed select-none"
-        >
+          disabled title="Coming soon!"
+          className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium cursor-not-allowed select-none"
+          style={{ background: 'var(--surface)', border: '1px solid var(--border)', color: 'var(--text-3)' }}>
           <Swords className="w-4 h-4" />
           Challenge Player
-          <span className="text-[10px] px-1.5 py-0.5 rounded bg-white/8 ml-1">Soon</span>
+          <span className="text-[10px] px-1.5 py-0.5 rounded ml-1"
+            style={{ background: 'var(--elevated)', border: '1px solid var(--border)' }}>
+            Soon
+          </span>
         </button>
       </div>
     </motion.div>

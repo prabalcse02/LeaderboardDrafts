@@ -37,17 +37,16 @@ export default function SetupPage() {
 
   const allTopics = selectedSubjects.flatMap(s => s!.topics)
 
-  const toggleTopic = (topicId: string) => {
-    const next = selectedTopicIds.includes(topicId)
-      ? selectedTopicIds.filter(t => t !== topicId)
-      : [...selectedTopicIds, topicId]
+  const toggleTopic = (id: string) => {
+    const next = selectedTopicIds.includes(id)
+      ? selectedTopicIds.filter(t => t !== id)
+      : [...selectedTopicIds, id]
     setSetup({ selectedTopicIds: next })
   }
 
   const launch = () => {
     resetSession()
-    const qCount    = estimateQuestions(durationMinutes)
-    const questions = getQuestionsForSession(selectedSubjectIds, selectedTopicIds, qCount)
+    const questions = getQuestionsForSession(selectedSubjectIds, selectedTopicIds, estimateQuestions(durationMinutes))
     if (questions.length === 0) {
       alert('No questions available for the selected topics yet. Try selecting different topics.')
       return
@@ -56,70 +55,66 @@ export default function SetupPage() {
     router.push('/prelims/play')
   }
 
+  const SectionLabel = ({ icon: Icon, label }: { icon: React.ElementType; label: string }) => (
+    <p className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--text-3)' }}>
+      <Icon size={11} />{label}
+    </p>
+  )
+
   return (
     <div className="max-w-2xl mx-auto px-4 py-8 space-y-6">
 
       {/* Back + title */}
       <div className="flex items-center gap-3">
-        <button
-          onClick={() => router.back()}
-          className="p-2.5 glass glass-hover rounded-xl text-white/50 hover:text-white border border-white/8"
-        >
+        <button onClick={() => router.back()}
+          className="p-2.5 rounded-xl border transition-colors"
+          style={{ background: 'var(--elevated)', borderColor: 'var(--border)', color: 'var(--text-3)' }}>
           <ChevronLeft size={17} />
         </button>
         <div>
-          <h1 className="text-xl font-black text-white">Mission Setup</h1>
-          <p className="text-white/35 text-xs">Configure your practice session</p>
+          <h1 className="font-heading text-xl" style={{ color: 'var(--text)' }}>Mission Setup</h1>
+          <p className="text-xs" style={{ color: 'var(--text-3)' }}>Configure your practice session</p>
         </div>
       </div>
 
-      {/* Selected subjects pill row */}
-      <div className="glass p-4 space-y-3">
-        <p className="flex items-center gap-1.5 text-xs font-bold text-white/40 uppercase tracking-wider">
-          <Layers size={11} /> Subjects
-        </p>
+      {/* Subjects */}
+      <div className="card p-4 space-y-3">
+        <SectionLabel icon={Layers} label="Subjects" />
         <div className="flex flex-wrap gap-2">
           {selectedSubjects.map(s => (
-            <span
-              key={s!.id}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm
-                bg-gradient-to-r ${s!.color} text-white font-semibold shadow-sm`}
-            >
+            <span key={s!.id}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-semibold bg-gradient-to-r ${s!.color} text-white shadow-sm`}>
               {s!.icon} {s!.name.split(' ')[0]}
             </span>
           ))}
         </div>
       </div>
 
-      {/* Topic chips */}
-      <div className="glass p-4 space-y-3">
+      {/* Topics */}
+      <div className="card p-4 space-y-3">
         <div className="flex items-center justify-between">
-          <p className="flex items-center gap-1.5 text-xs font-bold text-white/40 uppercase tracking-wider">
-            <Tag size={11} /> Topics
-          </p>
+          <SectionLabel icon={Tag} label="Topics" />
           {selectedTopicIds.length > 0 && (
-            <button
-              onClick={() => setSetup({ selectedTopicIds: [] })}
-              className="text-[10px] text-saffron-400/60 hover:text-saffron-400 transition-colors font-medium"
-            >
+            <button onClick={() => setSetup({ selectedTopicIds: [] })}
+              className="text-[10px] font-medium transition-colors" style={{ color: 'var(--text-3)' }}>
               Clear all
             </button>
           )}
         </div>
-        <p className="text-[11px] text-white/25">Leave unselected to practice all topics in chosen subjects</p>
+        <p className="text-[11px]" style={{ color: 'var(--text-3)' }}>
+          Leave unselected to practise all topics in chosen subjects
+        </p>
         <div className="flex flex-wrap gap-2">
           {allTopics.map(t => {
             const active = selectedTopicIds.includes(t.id)
             return (
-              <button
-                key={t.id}
-                onClick={() => toggleTopic(t.id)}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium
-                  border transition-all duration-150
-                  ${active
-                    ? 'bg-saffron-500/15 border-saffron-500/40 text-saffron-300'
-                    : 'bg-white/4 border-white/8 text-white/55 hover:border-white/20 hover:text-white/80'}`}
-              >
+              <button key={t.id} onClick={() => toggleTopic(t.id)}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium border transition-all duration-150"
+                style={{
+                  background:   active ? 'var(--accent-tint)' : 'var(--surface)',
+                  borderColor:  active ? 'color-mix(in oklab, var(--accent) 35%, transparent)' : 'var(--border)',
+                  color:        active ? 'var(--accent)' : 'var(--text-2)',
+                }}>
                 <span>{t.icon}</span>
                 {t.name}
               </button>
@@ -128,34 +123,29 @@ export default function SetupPage() {
         </div>
       </div>
 
-      {/* Duration picker */}
-      <div className="glass p-4 space-y-3">
-        <p className="flex items-center gap-1.5 text-xs font-bold text-white/40 uppercase tracking-wider">
-          <Clock size={11} /> Duration
-        </p>
+      {/* Duration */}
+      <div className="card p-4 space-y-3">
+        <SectionLabel icon={Clock} label="Duration" />
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {TIME_OPTIONS.map(opt => {
             const active = durationMinutes === opt.minutes
             return (
-              <button
-                key={opt.minutes}
-                onClick={() => setSetup({ durationMinutes: opt.minutes })}
-                className={`relative p-4 rounded-xl border text-left transition-all duration-150
-                  ${active
-                    ? 'bg-saffron-500/12 border-saffron-500/45 shadow-lg shadow-saffron-500/10'
-                    : 'bg-white/3 border-white/8 hover:border-white/18 hover:bg-white/5'}`}
-              >
+              <button key={opt.minutes} onClick={() => setSetup({ durationMinutes: opt.minutes })}
+                className="relative p-4 rounded-xl border text-left transition-all duration-150"
+                style={{
+                  background:  active ? 'var(--amber-tint)' : 'var(--surface)',
+                  borderColor: active ? 'color-mix(in oklab, var(--amber) 40%, transparent)' : 'var(--border)',
+                  boxShadow:   active ? '0 2px 8px color-mix(in oklab, var(--amber) 15%, transparent)' : 'none',
+                }}>
                 <span className="text-lg mb-1 block">{opt.icon}</span>
-                <p className={`text-lg font-black ${active ? 'text-saffron-400' : 'text-white'}`}>
+                <p className="text-lg font-black" style={{ color: active ? 'var(--amber)' : 'var(--text)' }}>
                   {opt.label}
                 </p>
-                <p className={`text-[10px] font-semibold mt-0.5 ${active ? 'text-saffron-400/70' : 'text-white/35'}`}>
+                <p className="text-[10px] font-semibold mt-0.5" style={{ color: active ? 'var(--amber)' : 'var(--text-3)' }}>
                   {opt.tag}
                 </p>
-                <p className="text-[10px] text-white/22 mt-0.5">{opt.desc}</p>
-                {active && (
-                  <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-saffron-400" />
-                )}
+                <p className="text-[10px] mt-0.5" style={{ color: 'var(--text-3)' }}>{opt.desc}</p>
+                {active && <span className="absolute top-2 right-2 w-2 h-2 rounded-full" style={{ background: 'var(--amber)' }} />}
               </button>
             )
           })}
@@ -163,15 +153,9 @@ export default function SetupPage() {
       </div>
 
       {/* Launch */}
-      <button
-        onClick={launch}
-        className="group w-full flex items-center justify-center gap-3 py-4
-          bg-gradient-to-r from-saffron-500 to-saffron-400
-          hover:from-saffron-600 hover:to-saffron-500
-          text-white font-black text-lg rounded-2xl
-          shadow-2xl shadow-saffron-500/30
-          transition-all hover:scale-[1.02] active:scale-100"
-      >
+      <button onClick={launch}
+        className="group btn-primary w-full flex items-center justify-center gap-3 py-4 rounded-2xl text-lg font-black"
+        style={{ boxShadow: '0 8px 24px color-mix(in oklab, var(--accent) 25%, transparent)' }}>
         <Rocket size={22} className="transition-transform group-hover:-rotate-12" />
         Launch Mission
       </button>

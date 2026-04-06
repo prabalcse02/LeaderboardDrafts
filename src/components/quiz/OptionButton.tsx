@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion'
 import { CheckCircle2, XCircle } from 'lucide-react'
-import clsx from 'clsx'
 
 type OptionKey = 'A' | 'B' | 'C' | 'D'
 
@@ -14,13 +13,6 @@ interface OptionButtonProps {
   disabled?: boolean
 }
 
-const LETTER_COLORS: Record<OptionKey, string> = {
-  A: 'bg-blue-500/20 text-blue-300 border-blue-500/30',
-  B: 'bg-violet-500/20 text-violet-300 border-violet-500/30',
-  C: 'bg-amber-500/20 text-amber-300 border-amber-500/30',
-  D: 'bg-rose-500/20 text-rose-300 border-rose-500/30',
-}
-
 export default function OptionButton({
   letter,
   text,
@@ -28,55 +20,59 @@ export default function OptionButton({
   onClick,
   disabled = false,
 }: OptionButtonProps) {
-  const isCorrect = state === 'correct' || state === 'reveal-correct'
+  const isCorrect   = state === 'correct' || state === 'reveal-correct'
   const isIncorrect = state === 'incorrect'
-  const isSelected = state === 'selected'
+  const isSelected  = state === 'selected'
+  const isDefault   = state === 'default'
+
+  const containerStyle = isCorrect
+    ? { background: 'color-mix(in oklab, var(--success) 12%, var(--elevated))', borderColor: 'color-mix(in oklab, var(--success) 45%, transparent)' }
+    : isIncorrect
+    ? { background: 'color-mix(in oklab, var(--error) 12%, var(--elevated))', borderColor: 'color-mix(in oklab, var(--error) 45%, transparent)' }
+    : isSelected
+    ? { background: 'color-mix(in oklab, var(--amber) 10%, var(--elevated))', borderColor: 'color-mix(in oklab, var(--amber) 45%, transparent)' }
+    : { background: 'var(--elevated)', borderColor: 'var(--border)' }
+
+  const badgeStyle = isCorrect
+    ? { background: 'color-mix(in oklab, var(--success) 20%, transparent)', color: 'var(--success)', borderColor: 'color-mix(in oklab, var(--success) 40%, transparent)' }
+    : isIncorrect
+    ? { background: 'color-mix(in oklab, var(--error) 20%, transparent)', color: 'var(--error)', borderColor: 'color-mix(in oklab, var(--error) 40%, transparent)' }
+    : isSelected
+    ? { background: 'color-mix(in oklab, var(--amber) 20%, transparent)', color: 'var(--amber)', borderColor: 'color-mix(in oklab, var(--amber) 40%, transparent)' }
+    : { background: 'var(--surface)', color: 'var(--text-3)', borderColor: 'var(--border)' }
+
+  const textColor = isCorrect
+    ? 'var(--success)'
+    : isIncorrect
+    ? 'var(--error)'
+    : isSelected
+    ? 'var(--amber)'
+    : 'var(--text-2)'
 
   return (
     <motion.button
       onClick={onClick}
-      disabled={disabled || state === 'correct' || state === 'incorrect' || state === 'reveal-correct'}
-      whileTap={!disabled && state === 'default' ? { scale: 0.97 } : {}}
-      whileHover={!disabled && state === 'default' ? { scale: 1.01 } : {}}
+      disabled={disabled || isCorrect || isIncorrect}
+      whileTap={!disabled && isDefault ? { scale: 0.97 } : {}}
+      whileHover={!disabled && isDefault ? { scale: 1.01 } : {}}
       transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-      className={clsx(
-        'w-full flex items-center gap-3 rounded-xl px-4 py-3.5 text-left',
-        'border transition-all duration-200 select-none',
-        'focus:outline-none focus-visible:ring-2 focus-visible:ring-saffron-400',
-        // default
-        state === 'default' && !disabled && 'border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 cursor-pointer',
-        state === 'default' && disabled && 'border-white/5 bg-white/3 cursor-not-allowed opacity-50',
-        // selected (before reveal)
-        isSelected && 'border-saffron-400/60 bg-saffron-500/10 cursor-default',
-        // correct
-        isCorrect && 'border-jade-500/60 bg-jade-500/15 cursor-default',
-        // incorrect
-        isIncorrect && 'border-rose-500/60 bg-rose-500/15 cursor-default',
-      )}
+      className="w-full flex items-center gap-3 rounded-xl px-4 py-3.5 text-left border transition-all duration-200 select-none focus:outline-none"
+      style={{
+        ...containerStyle,
+        cursor: disabled ? 'default' : isDefault ? 'pointer' : 'default',
+        opacity: disabled && isDefault ? 0.5 : 1,
+      }}
     >
       {/* Letter badge */}
       <span
-        className={clsx(
-          'flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold border',
-          isCorrect
-            ? 'bg-jade-500/30 text-jade-400 border-jade-500/50'
-            : isIncorrect
-            ? 'bg-rose-500/30 text-rose-400 border-rose-500/50'
-            : isSelected
-            ? 'bg-saffron-500/30 text-saffron-400 border-saffron-500/50'
-            : LETTER_COLORS[letter]
-        )}
+        className="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold border"
+        style={badgeStyle}
       >
         {letter}
       </span>
 
       {/* Option text */}
-      <span
-        className={clsx(
-          'flex-1 text-sm font-medium leading-snug',
-          isCorrect ? 'text-jade-300' : isIncorrect ? 'text-rose-300' : isSelected ? 'text-saffron-200' : 'text-white/80'
-        )}
-      >
+      <span className="flex-1 text-sm font-medium leading-snug" style={{ color: textColor }}>
         {text}
       </span>
 
@@ -87,7 +83,7 @@ export default function OptionButton({
           animate={{ scale: 1, opacity: 1 }}
           transition={{ type: 'spring', stiffness: 500, damping: 20, delay: 0.1 }}
         >
-          <CheckCircle2 className="w-5 h-5 text-jade-400 flex-shrink-0" />
+          <CheckCircle2 className="w-5 h-5 flex-shrink-0" style={{ color: 'var(--success)' }} />
         </motion.span>
       )}
       {isIncorrect && (
@@ -96,7 +92,7 @@ export default function OptionButton({
           animate={{ scale: 1, opacity: 1 }}
           transition={{ type: 'spring', stiffness: 500, damping: 20, delay: 0.1 }}
         >
-          <XCircle className="w-5 h-5 text-rose-400 flex-shrink-0" />
+          <XCircle className="w-5 h-5 flex-shrink-0" style={{ color: 'var(--error)' }} />
         </motion.span>
       )}
     </motion.button>

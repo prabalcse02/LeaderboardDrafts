@@ -9,7 +9,6 @@ import { calculateScore } from '@/lib/game/scoring'
 import OptionButton from './OptionButton'
 import Timer from './Timer'
 import ProgressBar from './ProgressBar'
-import clsx from 'clsx'
 
 type OptionKey = 'A' | 'B' | 'C' | 'D'
 const OPTION_KEYS: OptionKey[] = ['A', 'B', 'C', 'D']
@@ -18,86 +17,68 @@ export default function QuizEngine() {
   const router = useRouter()
   const { session, submitAnswer, endSession } = useGameStore()
 
-  const [currentIndex, setCurrentIndex]     = useState(0)
+  const [currentIndex,   setCurrentIndex]   = useState(0)
   const [selectedOption, setSelectedOption] = useState<OptionKey | null>(null)
-  const [revealed, setRevealed]             = useState(false)
-  const [timerKey, setTimerKey]             = useState(0)
-  const [xpFlash, setXpFlash]               = useState<{ amount: number; label: string } | null>(null)
-  const [speedLabel, setSpeedLabel]         = useState<string | null>(null)
-  const answerTimeRef = useRef<number>(Date.now())
+  const [revealed,       setRevealed]       = useState(false)
+  const [timerKey,       setTimerKey]       = useState(0)
+  const [xpFlash,        setXpFlash]        = useState<{ label: string } | null>(null)
+  const [speedLabel,     setSpeedLabel]     = useState<string | null>(null)
+  const answerTimeRef  = useRef<number>(Date.now())
   const autoAdvanceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const questions       = session?.questions ?? []
   const currentQuestion = questions[currentIndex]
   const isLastQuestion  = currentIndex === questions.length - 1
 
-  // Reset per-question state
   useEffect(() => {
     setSelectedOption(null)
     setRevealed(false)
     setTimerKey(k => k + 1)
     answerTimeRef.current = Date.now()
-    return () => {
-      if (autoAdvanceRef.current) clearTimeout(autoAdvanceRef.current)
-    }
+    return () => { if (autoAdvanceRef.current) clearTimeout(autoAdvanceRef.current) }
   }, [currentIndex])
 
   const handleNext = useCallback(() => {
     if (autoAdvanceRef.current) clearTimeout(autoAdvanceRef.current)
-    if (currentIndex < questions.length - 1) {
-      setCurrentIndex(i => i + 1)
-    } else {
-      endSession()
-      router.push('/prelims/results')
-    }
+    if (currentIndex < questions.length - 1) setCurrentIndex(i => i + 1)
+    else { endSession(); router.push('/prelims/results') }
   }, [currentIndex, questions.length, endSession, router])
 
-  const handleAnswer = useCallback(
-    (option: OptionKey) => {
-      if (revealed || !currentQuestion) return
+  const handleAnswer = useCallback((option: OptionKey) => {
+    if (revealed || !currentQuestion) return
+    const timeTaken   = Math.round((Date.now() - answerTimeRef.current) / 1000)
+    setSelectedOption(option)
+    setRevealed(true)
 
-      const timeTaken = Math.round((Date.now() - answerTimeRef.current) / 1000)
-      setSelectedOption(option)
-      setRevealed(true)
+    const isCorrect   = currentQuestion.correct === option
+    const result      = calculateScore(isCorrect, timeTaken, session?.streak ?? 0)
+    submitAnswer(currentQuestion.id, option, timeTaken)
 
-      const isCorrect  = currentQuestion.correct === option
-      const scoreResult = calculateScore(isCorrect, timeTaken, session?.streak ?? 0)
-      submitAnswer(currentQuestion.id, option, timeTaken)
-
-      // Speed flash
-      if (isCorrect && scoreResult.speedBonus > 0) {
-        const label = timeTaken < 10 ? '⚡ Lightning!' : timeTaken < 20 ? '🚀 Fast!' : '✓ Quick'
-        setSpeedLabel(label)
-        setTimeout(() => setSpeedLabel(null), 2000)
+    if (isCorrect && result.speedBonus > 0) {
+      setSpeedLabel(timeTaken < 10 ? '⚡ Lightning!' : timeTaken < 20 ? '🚀 Fast!' : '✓ Quick')
+      setTimeout(() => setSpeedLabel(null), 2000)
+    }
+    if (result.total > 0) {
+      const xp = Math.max(0, Math.floor(result.total * 0.5))
+      if (xp > 0) {
+        setXpFlash({ label: `+${xp} XP` })
+        setTimeout(() => setXpFlash(null), 2000)
       }
+    }
+    autoAdvanceRef.current = setTimeout(() => handleNext(), 2200)
+  }, [revealed, currentQuestion, session?.streak, submitAnswer, handleNext])
 
-      // XP flash
-      if (scoreResult.total > 0) {
-        const xpGained = Math.max(0, Math.floor(scoreResult.total * 0.5))
-        if (xpGained > 0) {
-          setXpFlash({ amount: xpGained, label: `+${xpGained} XP` })
-          setTimeout(() => setXpFlash(null), 2000)
-        }
-      }
-
-      // Auto-advance after 2s once answer is revealed
-      autoAdvanceRef.current = setTimeout(() => handleNext(), 2000)
-    },
-    [revealed, currentQuestion, session?.streak, submitAnswer, handleNext]
-  )
-
-  // Timer expire — reveal without answer, then auto-advance
   const handleExpire = useCallback(() => {
     if (!revealed && currentQuestion) {
       setRevealed(true)
-      autoAdvanceRef.current = setTimeout(() => handleNext(), 2000)
+      autoAdvanceRef.current = setTimeout(() => handleNext(), 2200)
     }
   }, [revealed, currentQuestion, handleNext])
 
   if (!session || questions.length === 0) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
-        <p className="text-white/50">No active session. Please start a new game.</p>
+        <p style={{ color: 'var(--text-3)' }}>No active session. Please start a new game.</p>
       </div>
     )
   }
@@ -117,81 +98,59 @@ export default function QuizEngine() {
   return (
     <div className="max-w-2xl mx-auto px-4 py-6 space-y-5">
 
-      {/* Header stats row */}
+      {/* Header */}
       <div className="flex items-center justify-between gap-3">
-
-        {/* Streak + Score */}
         <div className="flex items-center gap-2">
           <motion.div
-            className={clsx(
-              'flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-sm font-bold',
-              streak >= 3
-                ? 'bg-orange-500/15 border-orange-500/30 text-orange-300'
-                : 'bg-white/5 border-white/8 text-white/40'
-            )}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-sm font-bold"
+            style={{
+              background:  streak >= 3 ? 'var(--terra-tint)' : 'var(--surface)',
+              borderColor: streak >= 3 ? 'color-mix(in oklab, var(--terra) 30%, transparent)' : 'var(--border)',
+              color:       streak >= 3 ? 'var(--terra)' : 'var(--text-3)',
+            }}
             animate={streak >= 3 ? { scale: [1, 1.08, 1] } : { scale: 1 }}
             transition={{ duration: 0.5, repeat: streak >= 5 ? Infinity : 0, repeatDelay: 1.5 }}
           >
-            <Flame className={clsx('w-4 h-4', streak >= 3 ? 'text-orange-400' : 'text-white/25')} />
+            <Flame className="w-4 h-4" style={{ color: streak >= 3 ? 'var(--terra)' : 'var(--text-3)' }} />
             <span>{streak}</span>
           </motion.div>
 
-          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/5 border border-white/8 text-sm">
-            <Trophy className="w-4 h-4 text-saffron-400" />
-            <span className="font-bold text-white tabular-nums">{session.score}</span>
+          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-sm"
+            style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}>
+            <Trophy className="w-4 h-4" style={{ color: 'var(--amber)' }} />
+            <span className="font-bold tabular-nums" style={{ color: 'var(--text)' }}>{session.score}</span>
           </div>
         </div>
 
-        {/* Timer — centered */}
-        <Timer
-          key={timerKey}
-          totalSeconds={30}
-          onExpire={handleExpire}
-          paused={revealed}
-        />
+        <Timer key={timerKey} totalSeconds={30} onExpire={handleExpire} paused={revealed} />
 
-        {/* XP earned */}
-        <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/5 border border-white/8 text-sm">
-          <Zap className="w-4 h-4 text-saffron-400 fill-saffron-400" />
-          <span className="font-bold text-saffron-300 tabular-nums">{session.xpEarned}</span>
+        <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-sm"
+          style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}>
+          <Zap className="w-4 h-4" style={{ color: 'var(--amber)', fill: 'var(--amber)' }} />
+          <span className="font-bold tabular-nums" style={{ color: 'var(--amber)' }}>{session.xpEarned}</span>
         </div>
       </div>
 
-      {/* Progress bar */}
-      <ProgressBar
-        current={currentIndex + 1}
-        total={questions.length}
-        correct={correctCount}
-        wrong={wrongCount}
-        skipped={0}
-      />
+      <ProgressBar current={currentIndex + 1} total={questions.length}
+        correct={correctCount} wrong={wrongCount} skipped={0} />
 
-      {/* Speed / XP flash overlays */}
+      {/* Flash overlays */}
       <div className="relative h-0">
         <AnimatePresence>
           {speedLabel && (
-            <motion.div
-              key="speed"
-              className="absolute -top-2 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full
-                bg-blue-500/20 border border-blue-500/40 text-blue-300 text-sm font-bold
-                whitespace-nowrap z-10 shadow-lg"
-              initial={{ opacity: 0, y: 8, scale: 0.9 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -16 }}
-            >
+            <motion.div key="speed"
+              className="absolute -top-2 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full text-sm font-bold whitespace-nowrap z-10"
+              style={{ background: 'var(--accent-tint)', border: '1px solid color-mix(in oklab, var(--accent) 30%, transparent)', color: 'var(--accent)' }}
+              initial={{ opacity: 0, y: 8, scale: 0.9 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: -16 }}>
               {speedLabel}
             </motion.div>
           )}
           {xpFlash && (
-            <motion.div
-              key="xp"
-              className="absolute -top-2 right-0 flex items-center gap-1 px-3 py-1.5 rounded-full
-                bg-saffron-500/20 border border-saffron-500/40 text-saffron-300 text-sm font-bold z-10"
-              initial={{ opacity: 0, scale: 0.5, y: 8 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, y: -16 }}
-            >
-              <Zap className="w-3.5 h-3.5 fill-saffron-400 text-saffron-400" />
+            <motion.div key="xp"
+              className="absolute -top-2 right-0 flex items-center gap-1 px-3 py-1.5 rounded-full text-sm font-bold z-10"
+              style={{ background: 'var(--amber-tint)', border: '1px solid color-mix(in oklab, var(--amber) 30%, transparent)', color: 'var(--amber)' }}
+              initial={{ opacity: 0, scale: 0.5, y: 8 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, y: -16 }}>
+              <Zap className="w-3.5 h-3.5" style={{ fill: 'var(--amber)', color: 'var(--amber)' }} />
               {xpFlash.label}
             </motion.div>
           )}
@@ -200,66 +159,55 @@ export default function QuizEngine() {
 
       {/* Question card */}
       <AnimatePresence mode="wait">
-        <motion.div
-          key={currentQuestion.id}
-          className="glass rounded-2xl p-6 space-y-5 border border-white/8"
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -18 }}
-          transition={{ duration: 0.28, ease: 'easeOut' }}
-        >
+        <motion.div key={currentQuestion.id}
+          className="card rounded-2xl p-6 space-y-5"
+          initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -18 }}
+          transition={{ duration: 0.25, ease: 'easeOut' }}>
+
           {/* Meta */}
           <div className="flex items-center gap-2 flex-wrap text-xs">
-            <span className="px-2.5 py-1 rounded-lg bg-white/6 border border-white/8 text-white/50 capitalize font-medium">
+            <span className="px-2.5 py-1 rounded-lg capitalize font-medium"
+              style={{ background: 'var(--surface)', border: '1px solid var(--border)', color: 'var(--text-3)' }}>
               {currentQuestion.subjectId.replace(/-/g, ' ')}
             </span>
-            <span className={clsx(
-              'px-2.5 py-1 rounded-lg capitalize font-medium',
-              currentQuestion.difficulty === 'easy'   && 'bg-jade-500/12 text-jade-400 border border-jade-500/20',
-              currentQuestion.difficulty === 'medium' && 'bg-amber-500/12 text-amber-400 border border-amber-500/20',
-              currentQuestion.difficulty === 'hard'   && 'bg-rose-500/12 text-rose-400 border border-rose-500/20',
-            )}>
+            <span className="px-2.5 py-1 rounded-lg capitalize font-medium"
+              style={{
+                background: currentQuestion.difficulty === 'easy' ? 'var(--success-tint)' : currentQuestion.difficulty === 'medium' ? 'var(--warning-tint)' : 'var(--error-tint)',
+                color:      currentQuestion.difficulty === 'easy' ? 'var(--success)' : currentQuestion.difficulty === 'medium' ? 'var(--warning)' : 'var(--error)',
+                border:     `1px solid color-mix(in oklab, ${currentQuestion.difficulty === 'easy' ? 'var(--success)' : currentQuestion.difficulty === 'medium' ? 'var(--warning)' : 'var(--error)'} 25%, transparent)`,
+              }}>
               {currentQuestion.difficulty}
             </span>
             {currentQuestion.year && (
-              <span className="px-2.5 py-1 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-400 font-medium">
+              <span className="px-2.5 py-1 rounded-lg font-medium"
+                style={{ background: 'var(--accent-tint)', color: 'var(--accent)', border: '1px solid color-mix(in oklab, var(--accent) 20%, transparent)' }}>
                 UPSC {currentQuestion.year}
               </span>
             )}
-            <span className="ml-auto text-white/25 tabular-nums">{currentIndex + 1}/{questions.length}</span>
+            <span className="ml-auto tabular-nums" style={{ color: 'var(--text-3)' }}>{currentIndex + 1}/{questions.length}</span>
           </div>
 
           {/* Question text */}
-          <p className="text-base sm:text-lg font-semibold text-white leading-relaxed">
+          <p className="text-base sm:text-lg font-semibold leading-relaxed" style={{ color: 'var(--text)' }}>
             {currentQuestion.text}
           </p>
 
           {/* Options */}
           <div className="space-y-2.5">
             {OPTION_KEYS.map(key => (
-              <OptionButton
-                key={key}
-                letter={key}
-                text={currentQuestion.options[key]}
-                state={getOptionState(key)}
-                onClick={() => handleAnswer(key)}
-                disabled={revealed}
-              />
+              <OptionButton key={key} letter={key} text={currentQuestion.options[key]}
+                state={getOptionState(key)} onClick={() => handleAnswer(key)} disabled={revealed} />
             ))}
           </div>
 
           {/* Explanation */}
           <AnimatePresence>
             {revealed && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.3 }}
-                className="overflow-hidden"
-              >
-                <div className="p-4 rounded-xl bg-white/4 border border-white/8 text-sm text-white/65 leading-relaxed">
-                  <p className="text-white/35 text-[10px] font-bold uppercase tracking-widest mb-2">
+              <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.3 }} className="overflow-hidden">
+                <div className="p-4 rounded-xl text-sm leading-relaxed"
+                  style={{ background: 'var(--surface)', border: '1px solid var(--border)', color: 'var(--text-2)' }}>
+                  <p className="text-[10px] font-bold uppercase tracking-widest mb-2" style={{ color: 'var(--text-3)' }}>
                     Explanation
                   </p>
                   {currentQuestion.explanation}
@@ -270,26 +218,14 @@ export default function QuizEngine() {
         </motion.div>
       </AnimatePresence>
 
-      {/* Manual Next button (fallback if auto-advance not fired) */}
+      {/* Manual Next */}
       <AnimatePresence>
         {revealed && (
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="flex justify-end"
-          >
-            <button
-              onClick={handleNext}
-              className="flex items-center gap-2 px-6 py-3 rounded-xl
-                bg-saffron-500 hover:bg-saffron-600 text-white font-bold
-                transition-colors shadow-lg shadow-saffron-500/25"
-            >
-              {isLastQuestion ? (
-                <><Trophy className="w-4 h-4" /> Finish Session</>
-              ) : (
-                <>Next <ChevronRight className="w-4 h-4" /></>
-              )}
+          <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
+            className="flex justify-end">
+            <button onClick={handleNext}
+              className="btn-primary flex items-center gap-2 px-6 py-3 rounded-xl">
+              {isLastQuestion ? <><Trophy className="w-4 h-4" /> Finish Session</> : <>Next <ChevronRight className="w-4 h-4" /></>}
             </button>
           </motion.div>
         )}

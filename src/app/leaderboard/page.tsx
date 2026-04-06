@@ -9,62 +9,55 @@ import { GS_SUBJECTS } from '@/lib/data/subjects'
 export default function LeaderboardPage() {
   const userStats   = useGameStore(s => s.userStats)
   const leaderboard = useGameStore(s => s.leaderboard)
+  const subjects    = GS_SUBJECTS
 
-  const subjects = GS_SUBJECTS
-
-  const myActual = subjects.map(s => {
-    const score = userStats.subjectScores[s.id]
-    return score ? score.accuracyPct / 100 : 0
-  })
-
-  const top       = leaderboard[0]
+  const myActual = subjects.map(s => (userStats.subjectScores[s.id]?.accuracyPct ?? 0) / 100)
+  const top      = leaderboard[0]
   const topActual = top
     ? subjects.map(s => (top.subjectScores[s.id]?.accuracyPct ?? 0) / 100)
     : subjects.map(() => 0)
-
   const communityAvg = subjects.map(s => {
     const scores = leaderboard.map(e => e.subjectScores[s.id]?.accuracyPct ?? 0)
     return scores.reduce((a, b) => a + b, 0) / (scores.length || 1) / 100
   })
 
-  const myAccuracy = userStats.totalQuestionsAttempted > 0
-    ? Math.round((userStats.totalCorrect / userStats.totalQuestionsAttempted) * 100)
-    : 0
-  const myRank      = leaderboard.filter(e => e.accuracyPct > myAccuracy).length + 1
+  const myAccuracy   = userStats.totalQuestionsAttempted > 0
+    ? Math.round((userStats.totalCorrect / userStats.totalQuestionsAttempted) * 100) : 0
+  const myRank       = leaderboard.filter(e => e.accuracyPct > myAccuracy).length + 1
   const totalPlayers = leaderboard.length + 1
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 space-y-8">
 
-      {/* ── Header ───────────────────────────────────────────────────────────── */}
+      {/* ── Header ─────────────────────────────────────────────────────────────── */}
       <div className="flex items-center gap-4 flex-wrap">
-        <div className="w-11 h-11 rounded-xl bg-saffron-500/15 border border-saffron-500/25 flex items-center justify-center">
-          <Trophy size={20} className="text-saffron-400" />
+        <div className="w-11 h-11 rounded-xl flex items-center justify-center"
+          style={{ background: 'var(--amber-tint)', border: '1px solid color-mix(in oklab, var(--amber) 25%, transparent)' }}>
+          <Trophy size={20} style={{ color: 'var(--amber)' }} />
         </div>
         <div>
-          <h1 className="text-2xl font-black text-white">Leaderboard</h1>
-          <p className="text-white/40 text-sm">See where you stand among all aspirants</p>
+          <h1 className="font-heading text-2xl" style={{ color: 'var(--text)' }}>Leaderboard</h1>
+          <p className="text-sm" style={{ color: 'var(--text-3)' }}>See where you stand among all aspirants</p>
         </div>
-        <div className="ml-auto flex items-center gap-3">
-          <div className="text-right">
-            <p className="text-2xl font-black text-saffron-400">#{myRank}</p>
-            <p className="text-xs text-white/30 flex items-center gap-1">
-              <Users size={10} /> {totalPlayers} aspirants
-            </p>
-          </div>
+        <div className="ml-auto text-right">
+          <p className="text-2xl font-black tabular-nums" style={{ color: 'var(--amber)' }}>#{myRank}</p>
+          <p className="text-xs flex items-center gap-1 justify-end" style={{ color: 'var(--text-3)' }}>
+            <Users size={10} /> {totalPlayers} aspirants
+          </p>
         </div>
       </div>
 
-      {/* ── Radar comparison ─────────────────────────────────────────────────── */}
-      <div className="glass p-6 space-y-5">
+      {/* ── Radar comparison ───────────────────────────────────────────────────── */}
+      <div className="card p-6 space-y-5">
         <div className="flex items-center justify-between flex-wrap gap-3">
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-lg bg-saffron-500/15 flex items-center justify-center">
-              <TrendingUp size={13} className="text-saffron-400" />
+            <div className="w-7 h-7 rounded-lg flex items-center justify-center"
+              style={{ background: 'var(--accent-tint)', border: '1px solid color-mix(in oklab, var(--accent) 20%, transparent)' }}>
+              <TrendingUp size={13} style={{ color: 'var(--accent)' }} />
             </div>
-            <h2 className="text-sm font-bold text-white">Subject Coverage Comparison</h2>
+            <h2 className="text-sm font-bold" style={{ color: 'var(--text)' }}>Subject Coverage Comparison</h2>
           </div>
-          <div className="flex items-center gap-4 text-xs text-white/45">
+          <div className="flex items-center gap-4 text-xs" style={{ color: 'var(--text-3)' }}>
             <span className="flex items-center gap-1.5">
               <span className="w-2.5 h-2.5 rounded-full bg-blue-500 opacity-80" /> Target
             </span>
@@ -79,7 +72,7 @@ export default function LeaderboardPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div className="space-y-2">
-            <p className="text-xs text-center text-white/30 font-medium uppercase tracking-wider">
+            <p className="text-xs text-center font-medium uppercase tracking-wider" style={{ color: 'var(--text-3)' }}>
               Your Coverage
             </p>
             <RadarChart
@@ -92,10 +85,9 @@ export default function LeaderboardPage() {
               showLegend={false}
             />
           </div>
-
           {top && (
             <div className="space-y-2">
-              <p className="text-xs text-center text-white/30 font-medium uppercase tracking-wider">
+              <p className="text-xs text-center font-medium uppercase tracking-wider" style={{ color: 'var(--text-3)' }}>
                 🥇 {top.displayName} · Rank #1
               </p>
               <RadarChart
@@ -112,23 +104,23 @@ export default function LeaderboardPage() {
         </div>
       </div>
 
-      {/* ── Table ────────────────────────────────────────────────────────────── */}
+      {/* ── Table ──────────────────────────────────────────────────────────────── */}
       <LeaderboardTable />
 
-      {/* ── Sticky rank card ─────────────────────────────────────────────────── */}
-      <div className="glass p-4 flex items-center justify-between gap-4 sticky bottom-4
-        border border-saffron-500/15 bg-saffron-500/5 shadow-2xl shadow-saffron-500/10">
+      {/* ── Sticky rank footer ─────────────────────────────────────────────────── */}
+      <div className="card p-4 flex items-center justify-between gap-4 sticky bottom-4"
+        style={{ border: '1px solid color-mix(in oklab, var(--amber) 20%, var(--border))', background: 'var(--elevated)' }}>
         <div>
-          <p className="text-[10px] text-white/35 uppercase tracking-wider mb-0.5">Your Rank</p>
-          <p className="text-2xl font-black text-saffron-400">#{myRank}</p>
+          <p className="text-[10px] uppercase tracking-wider mb-0.5" style={{ color: 'var(--text-3)' }}>Your Rank</p>
+          <p className="text-2xl font-black tabular-nums" style={{ color: 'var(--amber)' }}>#{myRank}</p>
         </div>
         <div className="text-center">
-          <p className="text-sm font-bold text-white">{userStats.displayName}</p>
-          <p className="text-xs text-white/35">Level {userStats.level}</p>
+          <p className="text-sm font-bold" style={{ color: 'var(--text)' }}>{userStats.displayName}</p>
+          <p className="text-xs" style={{ color: 'var(--text-3)' }}>Level {userStats.level}</p>
         </div>
         <div className="text-right">
-          <p className="text-sm font-semibold text-saffron-300">{userStats.totalXp.toLocaleString()} XP</p>
-          <p className="text-[10px] text-white/25">{totalPlayers} total aspirants</p>
+          <p className="text-sm font-semibold" style={{ color: 'var(--amber)' }}>{userStats.totalXp.toLocaleString()} XP</p>
+          <p className="text-[10px]" style={{ color: 'var(--text-3)' }}>{totalPlayers} total aspirants</p>
         </div>
       </div>
     </div>
