@@ -30,18 +30,18 @@ export default function LeaderboardPage() {
     <div className="max-w-6xl mx-auto px-4 py-8 space-y-8">
 
       {/* ── Header ─────────────────────────────────────────────────────────────── */}
-      <div className="flex items-center gap-4 flex-wrap">
-        <div className="w-11 h-11 rounded-xl flex items-center justify-center"
-          style={{ background: 'var(--amber-tint)', border: '1px solid color-mix(in oklab, var(--amber) 25%, transparent)' }}>
-          <Trophy size={20} style={{ color: 'var(--amber)' }} />
-        </div>
-        <div>
-          <h1 className="font-heading text-2xl" style={{ color: 'var(--text)' }}>Leaderboard</h1>
+      <div className="flex items-end justify-between gap-4 flex-wrap">
+        <div className="space-y-1">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.18em]" style={{ color: 'var(--amber)' }}>
+            National Rankings
+          </p>
+          <h1 className="font-heading text-3xl" style={{ color: 'var(--text)' }}>Leaderboard</h1>
           <p className="text-sm" style={{ color: 'var(--text-3)' }}>See where you stand among all aspirants</p>
         </div>
-        <div className="ml-auto text-right">
-          <p className="text-2xl font-black tabular-nums" style={{ color: 'var(--amber)' }}>#{myRank}</p>
-          <p className="text-xs flex items-center gap-1 justify-end" style={{ color: 'var(--text-3)' }}>
+        <div className="card px-6 py-4 text-center shrink-0">
+          <p className="text-[10px] uppercase tracking-wider mb-1" style={{ color: 'var(--text-3)' }}>Your Rank</p>
+          <p className="text-3xl font-black tabular-nums leading-none" style={{ color: 'var(--amber)' }}>#{myRank}</p>
+          <p className="text-xs mt-1 flex items-center gap-1 justify-center" style={{ color: 'var(--text-3)' }}>
             <Users size={10} /> {totalPlayers} aspirants
           </p>
         </div>
@@ -59,13 +59,13 @@ export default function LeaderboardPage() {
           </div>
           <div className="flex items-center gap-4 text-xs" style={{ color: 'var(--text-3)' }}>
             <span className="flex items-center gap-1.5">
-              <span className="w-2.5 h-2.5 rounded-full bg-blue-500 opacity-80" /> Target
+              <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'var(--accent)' }} /> Target
             </span>
             <span className="flex items-center gap-1.5">
-              <span className="w-2.5 h-2.5 rounded-full bg-rose-500" /> You
+              <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'var(--terra)' }} /> You
             </span>
             <span className="flex items-center gap-1.5">
-              <span className="w-2.5 h-2.5 rounded-full bg-orange-400" /> Avg
+              <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'var(--amber)' }} /> Avg
             </span>
           </div>
         </div>

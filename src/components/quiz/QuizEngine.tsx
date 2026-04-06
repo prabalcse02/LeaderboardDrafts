@@ -224,7 +224,7 @@ export default function QuizEngine() {
           <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
             className="flex justify-end">
             <button onClick={handleNext}
-              className="btn-primary flex items-center gap-2 px-6 py-3 rounded-xl">
+              className="btn-amber flex items-center gap-2 px-6 py-2.5">
               {isLastQuestion ? <><Trophy className="w-4 h-4" /> Finish Session</> : <>Next <ChevronRight className="w-4 h-4" /></>}
             </button>
           </motion.div>

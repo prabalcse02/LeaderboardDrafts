@@ -80,11 +80,11 @@ function PrelimsContent() {
       {selected.length > 0 && (
         <div className="sticky bottom-6 flex justify-center z-20">
           <button onClick={() => router.push('/prelims/setup')}
-            className="group btn-primary flex items-center gap-3 px-8 py-4 rounded-2xl text-base font-black"
-            style={{ boxShadow: '0 8px 24px color-mix(in oklab, var(--accent) 25%, transparent)' }}>
-            <BookOpen size={18} />
+            className="btn-amber group flex items-center gap-2 px-7 py-3"
+            style={{ boxShadow: '0 6px 20px color-mix(in oklab, var(--amber) 28%, transparent)' }}>
+            <BookOpen size={15} />
             Select Topics
-            <ArrowRight size={17} className="transition-transform group-hover:translate-x-0.5" />
+            <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
           </button>
         </div>
       )}

@@ -14,9 +14,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    /* Default to dark class — matches upscpath.com dark mode.
-       When embedded, the parent can remove .dark to switch to light. */
-    <html lang="en" className="dark" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
         {/* Load both fonts used by upscpath.com */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />

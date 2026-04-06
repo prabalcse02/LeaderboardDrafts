@@ -154,10 +154,10 @@ export default function SetupPage() {
 
       {/* Launch */}
       <button onClick={launch}
-        className="group btn-primary w-full flex items-center justify-center gap-3 py-4 rounded-2xl text-lg font-black"
-        style={{ boxShadow: '0 8px 24px color-mix(in oklab, var(--accent) 25%, transparent)' }}>
-        <Rocket size={22} className="transition-transform group-hover:-rotate-12" />
-        Launch Mission
+        className="btn-amber group w-full flex items-center justify-center gap-2 py-3.5 text-base font-semibold"
+        style={{ boxShadow: '0 6px 20px color-mix(in oklab, var(--amber) 28%, transparent)' }}>
+        <Rocket size={18} className="transition-transform group-hover:-rotate-12" />
+        Launch Session
       </button>
     </div>
   )

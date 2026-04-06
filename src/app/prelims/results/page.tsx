@@ -189,18 +189,15 @@ export default function ResultsPage() {
       )}
 
       {/* ── CTAs ─────────────────────────────────────────────────────────────── */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+      <div className="flex flex-wrap items-center justify-center gap-3">
         <button onClick={() => router.push('/prelims')}
-          className="btn-primary flex items-center justify-center gap-2 py-3.5 rounded-xl text-sm">
+          className="btn-amber flex items-center gap-2 py-2.5 px-6">
           <RotateCcw size={14} /> Play Again
         </button>
-        <Link href="/prelims"
-          className="card flex items-center justify-center gap-2 py-3.5 rounded-xl text-sm font-semibold transition-colors card-hover"
-          style={{ color: 'var(--text-2)' }}>
+        <Link href="/prelims" className="btn-ghost flex items-center gap-2 py-2.5 px-6">
           New Subject
         </Link>
-        <Link href="/leaderboard"
-          className="card flex items-center justify-center gap-2 py-3.5 rounded-xl text-sm font-semibold transition-colors card-hover"
+        <Link href="/leaderboard" className="btn-ghost flex items-center gap-2 py-2.5 px-6"
           style={{ color: 'var(--text-2)' }}>
           Leaderboard <ArrowRight size={13} />
         </Link>

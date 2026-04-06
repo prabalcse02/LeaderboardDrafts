@@ -2,15 +2,14 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Zap, BookOpen, LayoutDashboard, BarChart3 } from 'lucide-react'
+import { BookOpen, ChevronDown } from 'lucide-react'
 import { useGameStore } from '@/lib/store/gameStore'
 import { LEVEL_TITLES } from '@/lib/game/levels'
-import clsx from 'clsx'
 
-const NAV_LINKS = [
-  { href: '/',            label: 'Dashboard', Icon: LayoutDashboard },
-  { href: '/prelims',     label: 'Play',      Icon: BookOpen },
-  { href: '/leaderboard', label: 'Ranks',     Icon: BarChart3 },
+const NAV_ITEMS = [
+  { label: 'Dashboard', href: '/' },
+  { label: 'Play',      href: '/prelims' },
+  { label: 'Ranks',     href: '/leaderboard' },
 ]
 
 export default function Navbar() {
@@ -20,92 +19,97 @@ export default function Navbar() {
   const level       = userStats?.level ?? 1
   const totalXp     = userStats?.totalXp ?? 0
   const displayName = userStats?.displayName ?? 'Aspirant'
-  const levelTitle  = LEVEL_TITLES[level] ?? 'Aspirant'
   const avatarSeed  = encodeURIComponent(displayName)
 
   return (
-    <nav className="sticky top-0 z-50 w-full backdrop-blur-xl"
-      style={{ background: 'color-mix(in oklab, var(--bg) 90%, transparent)', borderBottom: '1px solid var(--border)' }}>
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
+    <nav
+      className="sticky top-0 z-50 w-full"
+      style={{
+        background:   'var(--elevated)',
+        borderBottom: '1px solid var(--border)',
+      }}
+    >
+      <div className="mx-auto flex max-w-screen-lg items-center justify-between px-5 h-12">
 
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 select-none group">
-          <span className="font-heading text-xl font-normal group-hover:opacity-80 transition-opacity"
-            style={{ color: 'var(--text)' }}>
-            UPSCPATH
+        {/* ── Logo ─────────────────────────────────────────────────── */}
+        <Link href="/" className="flex items-center gap-2 select-none shrink-0">
+          <BookOpen size={16} style={{ color: 'var(--text-2)' }} />
+          <span className="text-sm font-semibold tracking-tight" style={{ color: 'var(--text)' }}>
+            UPSC Path
           </span>
-          <span className="rounded-md px-2 py-0.5 text-[9px] font-black uppercase tracking-widest border"
-            style={{ color: 'var(--amber)', background: 'var(--amber-tint)', borderColor: 'color-mix(in oklab, var(--amber) 25%, transparent)' }}>
+          <span className="text-[10px] font-bold px-1.5 py-0.5 rounded"
+            style={{ background: 'var(--amber-tint)', color: 'var(--amber)' }}>
             PRELIMS
           </span>
         </Link>
 
-        {/* Nav pill group */}
-        <div className="hidden md:flex items-center gap-0.5 p-1 rounded-xl border"
-          style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}>
-          {NAV_LINKS.map(({ href, label, Icon }) => {
+        {/* ── Nav links ────────────────────────────────────────────── */}
+        <div className="hidden md:flex items-center gap-1">
+          {NAV_ITEMS.map(({ label, href }) => {
             const active = pathname === href || (href !== '/' && pathname.startsWith(href))
             return (
-              <Link key={href} href={href}
-                className="flex items-center gap-1.5 px-4 py-1.5 rounded-lg text-sm font-semibold transition-all duration-150"
+              <Link
+                key={href}
+                href={href}
+                className="flex items-center gap-0.5 px-3 py-1.5 rounded-md text-sm transition-colors"
                 style={{
-                  background:   active ? 'var(--elevated)' : 'transparent',
-                  color:        active ? 'var(--text)'     : 'var(--text-3)',
-                  boxShadow:    active ? '0 1px 3px color-mix(in oklab, var(--text) 10%, transparent)' : 'none',
-                }}>
-                <Icon size={13} />
+                  color:      active ? 'var(--text)' : 'var(--text-3)',
+                  fontWeight: active ? 600 : 400,
+                  background: active ? 'var(--surface)' : 'transparent',
+                }}
+              >
                 {label}
+                {href === '/prelims' && <ChevronDown size={12} className="ml-0.5 opacity-50" />}
               </Link>
             )
           })}
         </div>
 
-        {/* Right: XP + avatar */}
+        {/* ── Right side ───────────────────────────────────────────── */}
         <div className="flex items-center gap-2">
-          {/* XP pill */}
-          <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl border"
-            style={{ background: 'var(--amber-tint)', borderColor: 'color-mix(in oklab, var(--amber) 25%, transparent)' }}>
-            <Zap size={12} style={{ color: 'var(--amber)', fill: 'var(--amber)' }} />
-            <span className="text-xs font-bold tabular-nums" style={{ color: 'var(--amber)' }}>
-              {totalXp.toLocaleString()} XP
-            </span>
+          {/* XP count — styled as small pill like upscpath.com "0 answers" */}
+          <div
+            className="hidden sm:flex items-center gap-1 px-3 py-1 rounded-full text-xs border"
+            style={{ color: 'var(--text-2)', borderColor: 'var(--border)', background: 'var(--elevated)' }}
+          >
+            <span className="font-semibold tabular-nums">{totalXp.toLocaleString()}</span>
+            <span style={{ color: 'var(--text-3)' }}>XP</span>
           </div>
 
-          {/* Avatar + level */}
-          <div className="flex items-center gap-2 px-2.5 py-1.5 rounded-xl border"
-            style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}>
-            <div className="relative shrink-0">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={`https://api.dicebear.com/7.x/initials/svg?seed=${avatarSeed}&backgroundColor=3c5d4d&textColor=ffffff`}
-                alt={displayName}
-                width={28}
-                height={28}
-                className="rounded-full"
-                style={{ border: '1.5px solid var(--border)' }}
-              />
-              <span className="absolute -bottom-1 -right-1 text-[8px] font-black rounded-full w-3.5 h-3.5 flex items-center justify-center leading-none"
-                style={{ background: 'var(--amber)', color: 'var(--amber-on)', border: '1.5px solid var(--bg)' }}>
-                {level}
-              </span>
-            </div>
-            <div className="hidden sm:block leading-tight">
-              <p className="text-xs font-bold" style={{ color: 'var(--text)' }}>{displayName.split(' ')[0]}</p>
-              <p className="text-[9px]" style={{ color: 'var(--text-3)' }}>{levelTitle}</p>
-            </div>
-          </div>
+          {/* User pill */}
+          <button
+            className="flex items-center gap-2 px-2.5 py-1 rounded-full text-sm border transition-colors"
+            style={{
+              background:   'var(--elevated)',
+              borderColor:  'var(--border)',
+              color:        'var(--text)',
+            }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={`https://api.dicebear.com/7.x/initials/svg?seed=${avatarSeed}&backgroundColor=3c5d4d&textColor=ffffff`}
+              alt={displayName}
+              width={20}
+              height={20}
+              className="rounded-full shrink-0"
+            />
+            <span className="hidden sm:inline font-medium text-xs">{displayName.split(' ')[0]}</span>
+            <ChevronDown size={11} className="opacity-40" />
+          </button>
         </div>
       </div>
 
-      {/* Mobile bottom nav */}
+      {/* ── Mobile bottom nav ─────────────────────────────────────── */}
       <div className="flex md:hidden border-t" style={{ borderColor: 'var(--border)' }}>
-        {NAV_LINKS.map(({ href, label, Icon }) => {
+        {NAV_ITEMS.map(({ label, href }) => {
           const active = pathname === href || (href !== '/' && pathname.startsWith(href))
           return (
-            <Link key={href} href={href}
-              className="flex-1 flex flex-col items-center gap-0.5 py-2.5 text-[10px] font-semibold transition-colors"
-              style={{ color: active ? 'var(--accent)' : 'var(--text-3)' }}>
-              <Icon size={16} />
+            <Link
+              key={href}
+              href={href}
+              className="flex-1 flex flex-col items-center gap-0.5 py-2 text-[10px] font-semibold transition-colors"
+              style={{ color: active ? 'var(--amber)' : 'var(--text-3)' }}
+            >
               {label}
             </Link>
           )
