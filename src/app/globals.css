@@ -96,6 +96,13 @@ body {
   transition:
     background-color var(--transition-base) var(--ease-smooth),
     color            var(--transition-base) var(--ease-smooth);
+  /* Subtle dot-grid matching upscpath.com */
+  background-image: radial-gradient(
+    circle,
+    color-mix(in oklab, var(--border) 60%, transparent) 1px,
+    transparent 1px
+  );
+  background-size: 20px 20px;
   min-height: 100vh;
 }
 
