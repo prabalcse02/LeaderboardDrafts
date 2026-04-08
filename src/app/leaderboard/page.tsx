@@ -1,6 +1,7 @@
 'use client'
 
 import { Trophy, TrendingUp, Users } from 'lucide-react'
+import { ROUTES } from '@/lib/config'
 import RadarChart from '@/components/charts/RadarChart'
 import LeaderboardTable from '@/components/leaderboard/LeaderboardTable'
 import { useGameStore } from '@/lib/store/gameStore'

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { CheckCircle2, XCircle, SkipForward, Zap, Trophy, RotateCcw, ArrowRight, Flame, TrendingUp } from 'lucide-react'
+import { ROUTES } from '@/lib/config'
 import RadarChart from '@/components/charts/RadarChart'
 import { useGameStore } from '@/lib/store/gameStore'
 import { GS_SUBJECTS } from '@/lib/data/subjects'
@@ -31,7 +32,7 @@ export default function ResultsPage() {
   const leaderboard = useGameStore(s => s.leaderboard)
 
   useEffect(() => {
-    if (!session || session.status !== 'completed') router.replace('/prelims')
+    if (!session || session.status !== 'completed') router.replace(ROUTES.prelims)
   }, [session, router])
 
   if (!session || session.status !== 'completed') return null
@@ -190,14 +191,14 @@ export default function ResultsPage() {
 
       {/* ── CTAs ─────────────────────────────────────────────────────────────── */}
       <div className="flex flex-wrap items-center justify-center gap-3">
-        <button onClick={() => router.push('/prelims')}
+        <button onClick={() => router.push(ROUTES.prelims)}
           className="btn-amber flex items-center gap-2 py-2.5 px-6">
           <RotateCcw size={14} /> Play Again
         </button>
-        <Link href="/prelims" className="btn-ghost flex items-center gap-2 py-2.5 px-6">
+        <Link href={ROUTES.prelims} className="btn-ghost flex items-center gap-2 py-2.5 px-6">
           New Subject
         </Link>
-        <Link href="/leaderboard" className="btn-ghost flex items-center gap-2 py-2.5 px-6"
+        <Link href={ROUTES.leaderboard} className="btn-ghost flex items-center gap-2 py-2.5 px-6"
           style={{ color: 'var(--text-2)' }}>
           Leaderboard <ArrowRight size={13} />
         </Link>

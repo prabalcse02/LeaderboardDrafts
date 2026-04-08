@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { ChevronRight } from 'lucide-react'
+import { ROUTES } from '@/lib/config'
 import RadarChart from '@/components/charts/RadarChart'
 import SubjectGrid from '@/components/dashboard/SubjectGrid'
 import { useGameStore } from '@/lib/store/gameStore'
@@ -200,10 +201,10 @@ export default function DashboardPage() {
               }
             </p>
             <div className="flex items-center gap-3 flex-wrap pt-1">
-              <Link href="/prelims" className="btn-amber">
+              <Link href={ROUTES.prelims} className="btn-amber">
                 Start Practising
               </Link>
-              <Link href="/leaderboard" className="btn-ghost">
+              <Link href={ROUTES.leaderboard} className="btn-ghost">
                 View Ranks
               </Link>
             </div>
@@ -263,7 +264,7 @@ export default function DashboardPage() {
               Progress across subjects
             </h2>
           </div>
-          <Link href="/prelims"
+          <Link href={ROUTES.prelims}
             className="text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-0.5 shrink-0"
             style={{ color: 'var(--amber)', background: 'var(--amber-tint)' }}>
             Next up: GS 1 <ChevronRight size={11} />
@@ -284,7 +285,7 @@ export default function DashboardPage() {
                 pct={pct}
                 completed={correct}
                 total={total}
-                href="/prelims"
+                href={ROUTES.prelims}
               />
             )
           })}
@@ -356,7 +357,7 @@ export default function DashboardPage() {
                 )
               })}
             </div>
-            <Link href="/leaderboard"
+            <Link href={ROUTES.leaderboard}
               className="mt-auto flex items-center justify-center gap-1 w-full py-2 rounded-full text-xs font-semibold border transition-colors"
               style={{ color: 'var(--accent)', borderColor: 'color-mix(in oklab, var(--accent) 25%, transparent)', background: 'var(--accent-tint)' }}>
               Full Leaderboard <ChevronRight size={11} />
@@ -372,7 +373,7 @@ export default function DashboardPage() {
             <SectionLabel>Browse</SectionLabel>
             <h2 className="font-heading text-2xl" style={{ color: 'var(--text)' }}>All Subjects</h2>
           </div>
-          <Link href="/prelims" className="text-xs font-semibold flex items-center gap-0.5"
+          <Link href={ROUTES.prelims} className="text-xs font-semibold flex items-center gap-0.5"
             style={{ color: 'var(--accent)' }}>
             Practice now <ChevronRight size={11} />
           </Link>

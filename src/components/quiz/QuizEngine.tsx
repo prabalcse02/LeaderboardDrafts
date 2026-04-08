@@ -8,6 +8,7 @@ import { useGameStore } from '@/lib/store/gameStore'
 import { calculateScore } from '@/lib/game/scoring'
 import OptionButton from './OptionButton'
 import Timer from './Timer'
+import { ROUTES } from '@/lib/config'
 import ProgressBar from './ProgressBar'
 
 type OptionKey = 'A' | 'B' | 'C' | 'D'
@@ -41,7 +42,7 @@ export default function QuizEngine() {
   const handleNext = useCallback(() => {
     if (autoAdvanceRef.current) clearTimeout(autoAdvanceRef.current)
     if (currentIndex < questions.length - 1) setCurrentIndex(i => i + 1)
-    else { endSession(); router.push('/prelims/results') }
+    else { endSession(); router.push(ROUTES.results) }
   }, [currentIndex, questions.length, endSession, router])
 
   const handleAnswer = useCallback((option: OptionKey) => {

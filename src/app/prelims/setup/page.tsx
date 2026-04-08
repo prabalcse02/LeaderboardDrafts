@@ -6,6 +6,7 @@ import { Clock, Rocket, ChevronLeft, Tag, Layers } from 'lucide-react'
 import { useGameStore } from '@/lib/store/gameStore'
 import { getSubjectById } from '@/lib/data/subjects'
 import { getQuestionsForSession } from '@/lib/data/questions'
+import { ROUTES } from '@/lib/config'
 
 const TIME_OPTIONS = [
   { minutes: 5,  label: '5 min',  tag: 'Micro',   desc: '~10 Qs', icon: '⚡' },
@@ -28,7 +29,7 @@ export default function SetupPage() {
   const { selectedSubjectIds, selectedTopicIds, durationMinutes } = setupState
 
   useEffect(() => {
-    if (selectedSubjectIds.length === 0) router.replace('/prelims')
+    if (selectedSubjectIds.length === 0) router.replace(ROUTES.prelims)
   }, [selectedSubjectIds, router])
 
   const selectedSubjects = selectedSubjectIds
@@ -52,7 +53,7 @@ export default function SetupPage() {
       return
     }
     startSession(setupState, questions)
-    router.push('/prelims/play')
+    router.push(ROUTES.play)
   }
 
   const SectionLabel = ({ icon: Icon, label }: { icon: React.ElementType; label: string }) => (

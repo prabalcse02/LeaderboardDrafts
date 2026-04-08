@@ -3,6 +3,7 @@
 import { useState, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { ArrowRight, BookOpen, Sparkles } from 'lucide-react'
+import { ROUTES } from '@/lib/config'
 import SubjectGrid from '@/components/dashboard/SubjectGrid'
 import { useGameStore } from '@/lib/store/gameStore'
 
@@ -79,7 +80,7 @@ function PrelimsContent() {
       {/* Sticky CTA */}
       {selected.length > 0 && (
         <div className="sticky bottom-6 flex justify-center z-20">
-          <button onClick={() => router.push('/prelims/setup')}
+          <button onClick={() => router.push(ROUTES.setup)}
             className="btn-amber group flex items-center gap-2 px-7 py-3"
             style={{ boxShadow: '0 6px 20px color-mix(in oklab, var(--amber) 28%, transparent)' }}>
             <BookOpen size={15} />

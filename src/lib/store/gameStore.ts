@@ -208,9 +208,20 @@ export const useGameStore = create<GameStore>()(
           }
         }
 
-        const newTotalXp       = userStats.totalXp + completedSession.xpEarned
+        const newTotalXp        = userStats.totalXp + completedSession.xpEarned
         const newTotalAttempted = userStats.totalQuestionsAttempted + session.questions.length
         const newTotalCorrect   = userStats.totalCorrect + Object.values(session.answers).filter(a => a.isCorrect).length
+
+        // Streak calculation: increment if last session was yesterday, keep if today, reset to 1 otherwise
+        const now       = Date.now()
+        const todayStr  = new Date(now).toDateString()
+        const lastStr   = userStats.lastPlayedAt ? new Date(userStats.lastPlayedAt).toDateString() : ''
+        const yesterStr = new Date(now - 86_400_000).toDateString()
+        const newStreak = lastStr === yesterStr
+          ? userStats.streakDays + 1
+          : lastStr === todayStr
+          ? userStats.streakDays      // already played today — don't double-count
+          : 1                         // streak broken — reset to 1
 
         const updatedStats: UserStats = {
           ...userStats,
@@ -219,7 +230,8 @@ export const useGameStore = create<GameStore>()(
           totalQuestionsAttempted:  newTotalAttempted,
           totalCorrect:             newTotalCorrect,
           totalSessions:            userStats.totalSessions + 1,
-          lastPlayedAt:             Date.now(),
+          streakDays:               newStreak,
+          lastPlayedAt:             now,
           subjectScores:            updatedSubjectScores,
         }
 
@@ -243,7 +255,7 @@ export const useGameStore = create<GameStore>()(
       },
     }),
     {
-      name:    'upscpath-game',
+      name:    'upscpath-prelims-v1',  // namespaced to avoid collision with upscpath.com store
       version: 1,
       // Don't persist the active session's questions (can be large) — re-derive on load
       partialize: (s) => ({
