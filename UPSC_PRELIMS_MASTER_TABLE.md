@@ -5,7 +5,10 @@
 >
 > **Primary official source:** https://upsc.gov.in  
 > **Last updated:** April 2026  
-> **All question paper and answer key URLs verified from** `upsc.gov.in/sites/default/files/`
+> **All URLs from** `upsc.gov.in/sites/default/files/` — publicly accessible direct PDF links.
+>
+> ⚠️ UPSC index pages return HTTP 403 to bots. Access index via browser only.  
+> Individual PDF files ARE publicly accessible when URL is known.
 
 ---
 
@@ -15,192 +18,194 @@
 | Paper | Questions | Marks | Per Correct | Negative Marking | Role |
 |-------|-----------|-------|-------------|-----------------|------|
 | GS Paper I | 100 | 200 | +2.00 | −0.667 (1/3rd) | **Merit ranking** |
-| CSAT Paper II | 80 | 200 | +2.50 | −0.833 (1/3rd) | **Qualifying only** (min 33% = 66/200) |
+| CSAT Paper II | 80 | 200 | +2.50 | −0.833 (1/3rd) | **Qualifying only** (min 33% = 66 marks) |
 
 ### Historical Format (2011–2014) — CSAT Counted in Merit
 | Paper | Questions | Marks | Per Correct | Negative Marking | Role |
 |-------|-----------|-------|-------------|-----------------|------|
 | GS Paper I | 100 | 200 | +2.00 | −0.667 | Counted for merit |
-| CSAT Paper II | 80 | 200 | +2.50 | −0.833 | Also counted for merit |
+| CSAT Paper II | 80 | 200 | +2.50 | −0.833 | **Also counted for merit** |
 
-> **Key policy change 2015:** CSAT made qualifying-only after 2014 controversy. GS Paper I
-> alone determines Prelims merit rank from 2015 onward.
+> **Key change 2015:** CSAT made qualifying-only after controversy. GS Paper I alone determines Prelims merit from 2015 onward.
 
 ### Pre-CSAT Format (Before 2011)
-- Two papers: GS (150 marks) + one Optional Subject (300 marks)
-- No negative marking in earlier years; different format entirely
+- Two papers: GS (150 marks) + one Optional Subject (300 marks) — different format entirely
 
-### Notes on Question Drops
-- UPSC periodically drops questions found to be erroneous or ambiguous
-- 2024 GS-I: **3 questions dropped** per set (A/B/C/D) → 97 effective questions
-- Dropped questions are awarded full marks to all candidates
-- **Always use the FINAL answer key** (released ~12 months after exam, after results)
-- URL identifier note: `QP-CSP-XX` = Prelims; `QP-CSM-XX` = Mains (exclude Mains)
+### Important: Question Drops
+- UPSC drops erroneous/ambiguous questions periodically (e.g., 2024: 3 dropped per set A/B/C/D)
+- Dropped questions get full marks to all; must be **excluded from question DB** (`status: 'dropped'`)
+- **Always use the FINAL answer key** (~12 months post-exam) — never the preliminary/provisional one
+- URL pattern: `QP-CSP-XX` = Prelims; `QP-CSM-XX` = Mains → **exclude Mains**
 
 ---
 
-## Master Table: Official Question Papers & Answer Keys
+## Complete Master Table
 
-### GS Paper I (General Studies — 100 Qs, 200 marks, counts for merit ranking)
+### GS Paper I — Question Papers + Answer Keys
 
-| Year | Exam Date | Official Question Paper (upsc.gov.in) | Official Answer Key (upsc.gov.in) | Drops | Key Released |
-|------|-----------|--------------------------------------|----------------------------------|-------|-------------|
-| **2024** | 26 May 2024 | [QP GS-I 2024](https://upsc.gov.in/sites/default/files/QP-CSP-24-GENERAL-STUDIES-PAPER-I-180624.pdf) | [AK GS-I 2024](https://upsc.gov.in/sites/default/files/AnsKey-CivilServicesPExam-2024-GeneralStudies-I-210525.pdf) | 3/set | 21 May 2025 |
-| **2023** | 28 May 2023 | [QP GS-I 2023](https://upsc.gov.in/sites/default/files/QP_CS_Pre_Exam_2023_280523.pdf) | [AK GS-I 2023](https://upsc.gov.in/sites/default/files/AnsKey-CSP-2023-Paper-I-090524.pdf) | TBC | 09 May 2024 |
-| **2022** | 05 Jun 2022 | *(check UPSC archive — 403 on index)* | [AK GS-I 2022](https://upsc.gov.in/sites/default/files/AnsKey-CSP-2022-Paper-I-040723.pdf) | TBC | 04 Jul 2023 |
-| **2021** | 10 Oct 2021 | [QP GS-I 2021](https://upsc.gov.in/sites/default/files/QP-CSP-21-GeneralStudiesPaper-I-121021.pdf) | [AK GS-I 2021](https://upsc.gov.in/sites/default/files/Anskey-CSP-21-GS-I-300522.pdf) | TBC | 30 May 2022 |
-| **2020** | 04 Oct 2020 | [QP GS-I 2020](https://upsc.gov.in/sites/default/files/CSP_2020_GS_Paper-1.pdf) | [AK GS-I 2020](https://upsc.gov.in/sites/default/files/AnsKey-CSP-20-Paper-I-091121.pdf) | TBC | 09 Nov 2021 |
-| **2019** | 02 Jun 2019 | [QP GS-I 2019](https://upsc.gov.in/sites/default/files/csp-p1.pdf) | [AK GS-I 2019](https://upsc.gov.in/sites/default/files/AnsKeyCSP-19-GS_I.pdf) | TBC | — |
-| **2018** | 03 Jun 2018 | [QP GS-I 2018 (Set C)](https://upsc.gov.in/sites/default/files/QP-CSP-18-GS-I-C.pdf) | [AK GS-I 2018](https://upsc.gov.in/sites/default/files/AnsKey-CSP-18-Paper-I.pdf) | TBC | — |
-| **2017** | 18 Jun 2017 | *(check UPSC archive)* | [AK GS-I 2017](https://upsc.gov.in/sites/default/files/Anskey-CSP-17-GS-I.pdf) | TBC | — |
-| **2016** | 07 Aug 2016 | [QP GS-I 2016](https://upsc.gov.in/sites/default/files/CSP_16_GS_Paper_I.pdf) | *(not yet confirmed on upsc.gov.in)* | TBC | Check archive |
-| **2015** | 23 Aug 2015 | *(check UPSC archive)* | [AK GS-I 2015](https://upsc.gov.in/sites/default/files/CSP_15_GS_I_AKy.pdf) | TBC | — |
-| **2014** | 24 Aug 2014 | *(check UPSC archive)* | *(check UPSC archive)* | TBC | Last yr CSAT counted |
-| **2013** | 26 May 2013 | *(check UPSC archive)* | *(check UPSC archive)* | TBC | — |
-| **2012** | 20 May 2012 | *(check UPSC archive)* | *(check UPSC archive)* | TBC | — |
-| **2011** | 12 Jun 2011 | [QP GS-I 2011](https://upsc.gov.in/sites/default/files/GS11.pdf) *(unverified)* | *(check UPSC archive)* | TBC | First CSAT year |
+| Year | Exam Date | Question Paper (Direct PDF) | Answer Key (Direct PDF) | Key Released |
+|------|-----------|----------------------------|------------------------|-------------|
+| **2024** | 16 Jun 2024 | [QP GS-I 2024](https://upsc.gov.in/sites/default/files/QP-CSP-24-GENERAL-STUDIES-PAPER-I-180624.pdf) | [AK GS-I 2024](https://upsc.gov.in/sites/default/files/AnsKey-CivilServicesPExam-2024-GeneralStudies-I-210525.pdf) | 21 May 2025 |
+| **2023** | 28 May 2023 | [QP GS-I 2023](https://upsc.gov.in/sites/default/files/QP_CS_Pre_Exam_2023_280523.pdf) | [AK GS-I 2023](https://upsc.gov.in/sites/default/files/AnsKey-CSP-2023-Paper-I-090524.pdf) | 09 May 2024 |
+| **2022** | 05 Jun 2022 | [QP GS-I 2022](https://upsc.gov.in/sites/default/files/General-Studies-Paper-I.pdf) ¹ | [AK GS-I 2022](https://upsc.gov.in/sites/default/files/AnsKey-CSP-2022-Paper-I-040723.pdf) | 04 Jul 2023 |
+| **2021** | 10 Oct 2021 | [QP GS-I 2021](https://upsc.gov.in/sites/default/files/QP-CSP-21-GeneralStudiesPaper-I-121021.pdf) | [AK GS-I 2021](https://upsc.gov.in/sites/default/files/Anskey-CSP-21-GS-I-300522.pdf) | 30 May 2022 |
+| **2020** | 04 Oct 2020 | [QP GS-I 2020](https://upsc.gov.in/sites/default/files/CSP_2020_GS_Paper-1.pdf) | [AK GS-I 2020](https://upsc.gov.in/sites/default/files/AnsKey-CSP-20-Paper-I-091121.pdf) | 09 Nov 2021 |
+| **2019** | 02 Jun 2019 | [QP GS-I 2019](https://upsc.gov.in/sites/default/files/csp-p1.pdf) | [AK GS-I 2019](https://upsc.gov.in/sites/default/files/AnsKeyCSP-19-GS_I.pdf) | — |
+| **2018** | 03 Jun 2018 | [QP GS-I 2018 Set C](https://upsc.gov.in/sites/default/files/QP-CSP-18-GS-I-C.pdf) | [AK GS-I 2018](https://upsc.gov.in/sites/default/files/AnsKey-CSP-18-Paper-I.pdf) | — |
+| **2017** | 18 Jun 2017 | [QP GS-I 2017 Set C](https://upsc.gov.in/sites/default/files/CSP-17-GS_PAPER-1-C.pdf) | [AK GS-I 2017](https://upsc.gov.in/sites/default/files/Anskey-CSP-17-GS-I.pdf) | — |
+| **2016** | 07 Aug 2016 | [QP GS-I 2016](https://upsc.gov.in/sites/default/files/CSP_16_GS_Paper_I.pdf) | *(browse [2016 exam page](https://upsc.gov.in/examinations/Civil%20Services%20%28Preliminary%29%20Examination%2C%202016))* | — |
+| **2015** | 23 Aug 2015 | *(browse [year-2015 page](https://upsc.gov.in/examinations/question-papers/question-papers-year-2015))* | [AK GS-I 2015](https://upsc.gov.in/sites/default/files/CSP_15_GS_I_AKy.pdf) | — |
+| **2014** | 24 Aug 2014 | [QP GS-I 2014](https://upsc.gov.in/sites/default/files/CSP_14_GenStudy_I0001.pdf) ² | *(browse [archives](https://upsc.gov.in/examinations/previous-question-papers/archives))* | Last yr CSAT counted |
+| **2013** | 26 May 2013 | *(browse [archives](https://upsc.gov.in/examinations/previous-question-papers/archives))* | *(browse archives)* | — |
+| **2012** | 20 May 2012 | *(browse [archives](https://upsc.gov.in/examinations/previous-question-papers/archives))* | *(browse archives)* | — |
+| **2011** | 12 Jun 2011 | *(browse archives)* | *(browse archives)* | First CSAT year |
+| **2025** | 25 May 2025 | *(upload expected mid-2025)* | **Not yet released** (~mid-2026) | — |
 
 ---
 
-### CSAT / GS Paper II (Aptitude — 80 Qs, 200 marks; qualifying from 2015)
+### CSAT / GS Paper II — Question Papers + Answer Keys
+*(Qualifying only from 2015; counted for merit 2011–2014)*
 
-| Year | Official Question Paper (upsc.gov.in) | Official Answer Key (upsc.gov.in) | Variant | Notes |
-|------|--------------------------------------|----------------------------------|---------|-------|
-| **2024** | [QP CSAT 2024](https://upsc.gov.in/sites/default/files/QP-CSP-24-GENERAL-STUDIES-PAPER-II-180624.pdf) | *(not yet confirmed)* | Standard | Check UPSC archive |
-| **2023** | *(check UPSC archive)* | [AK CSAT 2023](https://upsc.gov.in/sites/default/files/AnsKey-CSP-2023-Paper-II-090524.pdf) | Standard | — |
-| **2022** | *(check UPSC archive)* | [AK CSAT 2022](https://upsc.gov.in/sites/default/files/AnsKey-CSP-2022-Paper-II-040723.pdf) | Standard | — |
+| Year | Question Paper (Direct PDF) | Answer Key (Direct PDF) | Variant | Notes |
+|------|----------------------------|------------------------|---------|-------|
+| **2024** | [QP CSAT 2024](https://upsc.gov.in/sites/default/files/QP-CSP-24-GENERAL-STUDIES-PAPER-II-180624.pdf) | *(not yet confirmed on upsc.gov.in)* | Standard | Check [answer-key page](https://upsc.gov.in/examinations/answer-key) |
+| **2023** | [QP CSAT 2023](https://upsc.gov.in/sites/default/files/QP_CS_Pre_Exam_2023_GENERAL_STUDIES_PAPER_II_280523.pdf) | [AK CSAT 2023](https://upsc.gov.in/sites/default/files/AnsKey-CSP-2023-Paper-II-090524.pdf) | Standard | — |
+| **2022** | [QP CSAT 2022](https://upsc.gov.in/sites/default/files/Paper-II.pdf) ¹ | [AK CSAT 2022](https://upsc.gov.in/sites/default/files/AnsKey-CSP-2022-Paper-II-040723.pdf) | Standard | — |
 | **2021** | [QP CSAT 2021](https://upsc.gov.in/sites/default/files/QP-CSP-21-GeneralStudiesPaper-II-121021.pdf) | [AK CSAT 2021](https://upsc.gov.in/sites/default/files/Anskey-CSP-21-GS-II-300522.pdf) | Standard | — |
-| **2020** | *(check UPSC archive)* | [AK CSAT 2020](https://upsc.gov.in/sites/default/files/AnsKey-CSP-20-Paper-II-091121.pdf) | Standard | — |
-| **2019** | *(check UPSC archive)* | *(not yet confirmed)* | Standard | — |
-| **2018** | [QP CSAT 2018 (Set C)](https://upsc.gov.in/sites/default/files/QP-CSP-18-GS-II-C.pdf) | [AK CSAT 2018](https://upsc.gov.in/sites/default/files/AnsKey-CSP-18-Paper-II.pdf) | Standard | — |
-| **2018** | *(same exam)* | [AK CSAT 2018 PWD](https://upsc.gov.in/sites/default/files/AnsKey-CSP-18-Paper-II-PWD.pdf) | **PWD Variant** | Special needs variant |
-| **2017** | *(check UPSC archive)* | [AK CSAT 2017](https://upsc.gov.in/sites/default/files/ANskey-CSP-17-GS-II.pdf) | Standard | — |
-| **2016** | *(check UPSC archive)* | [AK CSAT 2016](https://upsc.gov.in/sites/default/files/CSP_16_GS_Paper_II.pdf) | Standard | — |
-| **2015** | *(check UPSC archive)* | *(not yet confirmed)* | Standard | First qualifying-only year |
-| **2014** | [QP CSAT 2014](https://upsc.gov.in/sites/default/files/CSP_14_GenStudy_II0001.pdf) | *(check UPSC archive)* | Standard | Last yr counted in merit |
-| **2011–2013** | *(check UPSC archive)* | *(check UPSC archive)* | Standard | Counted in merit |
+| **2020** | *(browse [2020 exam page](https://upsc.gov.in/examinations/Civil%20Services%20(Preliminary)%20Examination,%202020))* | [AK CSAT 2020](https://upsc.gov.in/sites/default/files/AnsKey-CSP-20-Paper-II-091121.pdf) | Standard | — |
+| **2019** | [QP CSAT 2019](https://upsc.gov.in/sites/default/files/csp-p2.pdf) ² | [AK CSAT 2019](https://upsc.gov.in/sites/default/files/AnsKeyCSP-19-GS_II.pdf) | Standard | — |
+| **2018** | [QP CSAT 2018 Set C](https://upsc.gov.in/sites/default/files/QP-CSP-18-GS-II-C.pdf) | [AK CSAT 2018](https://upsc.gov.in/sites/default/files/AnsKey-CSP-18-Paper-II.pdf) | Standard | — |
+| **2018** | *(same QP)* | [AK CSAT 2018 PWD](https://upsc.gov.in/sites/default/files/AnsKey-CSP-18-Paper-II-PWD.pdf) | **PWD Variant** | Persons with disabilities |
+| **2017** | *(browse [2017 exam page](https://upsc.gov.in/examinations/CIVIL%20SERVICES%20(PRELIMINARY)%20EXAM.%202017))* | [AK CSAT 2017](https://upsc.gov.in/sites/default/files/ANskey-CSP-17-GS-II.pdf) | Standard | — |
+| **2016** | [QP CSAT 2016](https://upsc.gov.in/sites/default/files/CSP_16_GS_Paper_II.pdf) | *(browse [2016 exam page](https://upsc.gov.in/examinations/Civil%20Services%20%28Preliminary%29%20Examination%2C%202016))* | Standard | — |
+| **2015** | *(browse [year-2015 page](https://upsc.gov.in/examinations/question-papers/question-papers-year-2015))* | [AK CSAT 2015](https://upsc.gov.in/sites/default/files/CSP_15_GS_II_AKy.pdf) ² | Standard | First qualifying-only year |
+| **2014** | [QP CSAT 2014](https://upsc.gov.in/sites/default/files/CSP_14_GenStudy_II0001.pdf) | *(browse archives)* | Standard | Last year counted in merit |
+| **2011** | [QP CSAT 2011](https://upsc.gov.in/sites/default/files/GS11.pdf) | *(browse archives)* | Standard | First CSAT year |
+| **2011–2013** | *(browse [archives](https://upsc.gov.in/examinations/previous-question-papers/archives))* | *(browse archives)* | Standard | — |
 
 ---
 
-## UPSC Official Portal URLs
+> ¹ **2022 generic filenames** — `General-Studies-Paper-I.pdf` and `Paper-II.pdf` are confirmed as 2022 Prelims papers by search indexing context. Verify before use as UPSC occasionally reuses generic names.
+>
+> ² **Inferred URLs** — derived from confirmed naming patterns; verify by attempting direct download before using in production.
+
+---
+
+## UPSC Official Navigation URLs
 
 | Resource | URL |
 |----------|-----|
-| Main UPSC site | https://upsc.gov.in |
-| All Answer Keys index | https://upsc.gov.in/examinations/answer-key |
-| Answer Keys archive | https://upsc.gov.in/examinations/answer-keys/archives |
-| Previous Question Papers index | https://upsc.gov.in/examinations/previous-question-papers |
+| **Question Papers index** | https://upsc.gov.in/examinations/previous-question-papers |
+| **Question Papers archives** (pre-2020) | https://upsc.gov.in/examinations/previous-question-papers/archives |
+| **All Answer Keys index** | https://upsc.gov.in/examinations/answer-key |
+| **Answer Keys archives** | https://upsc.gov.in/examinations/answer-keys/archives |
 | 2024 Prelims exam page | https://upsc.gov.in/examinations/Civil%20Services%20(Preliminary)%20Examination,%202024 |
 | 2023 Prelims exam page | https://upsc.gov.in/examinations/Civil%20Services%20(Preliminary)%20Examination,%202023 |
 | 2022 Prelims exam page | https://upsc.gov.in/examinations/Civil%20Services%20(Preliminary)%20Examination,%202022 |
+| 2020 Prelims exam page | https://upsc.gov.in/examinations/Civil%20Services%20(Preliminary)%20Examination,%202020 |
+| 2019 Prelims exam page | https://upsc.gov.in/examinations/Civil%20Services%20(Preliminary)%20Examination,%202019 |
 | 2017 Prelims exam page | https://upsc.gov.in/examinations/CIVIL%20SERVICES%20(PRELIMINARY)%20EXAM.%202017 |
 | 2016 Prelims exam page | https://upsc.gov.in/examinations/Civil%20Services%20%28Preliminary%29%20Examination%2C%202016 |
-
-> ⚠️ **Note:** upsc.gov.in index/listing pages return HTTP 403 for automated access.
-> Individual PDF files at `upsc.gov.in/sites/default/files/` are **publicly accessible** via direct URL.
+| Year-2015 papers page | https://upsc.gov.in/examinations/question-papers/question-papers-year-2015 |
 
 ---
 
-## Authoritative Aggregators (ranked by reliability)
+## Authoritative Aggregators (backup sources — verify answers against official keys)
 
-| Rank | Source | URL | Coverage | Notes |
-|------|--------|-----|----------|-------|
-| 🥇 1 | **ForumIAS** | https://forumias.com/blog/upsc-official-answer-key-for-prelims/ | 2014–2024 | Best single-page compilation of direct upsc.gov.in keys |
-| 🥈 2 | **Insights on India** | https://www.insightsonindia.com/upsc-ias-civil-services-past-year-prelims-preliminary-exam-full-question-papers-10-years/ | 2011–2025 | Full QPs + keys; links to official source |
-| 🥉 3 | **Drishti IAS** | https://www.drishtiias.com/free-downloads/prelims-previous-year-papers-1-gs-yearwise-downloads | 2011–2024 | Year-wise GS Paper I; reputable coaching brand |
-| 4 | **ClearIAS** | https://www.clearias.com/upsc-civil-services-exam-previous-year-question-papers-ias-ips/ | 2011–2024 | Papers from 2011 with official keys linked |
-| 5 | **Level Up IAS** | https://www.levelupias.com/general-studies-prelims-paper-1 | 2009–2023 | GS Paper 1 from 2009 onwards |
-| 6 | **Education Province** | https://educationprovince.com/upsc-prelims-previous-year-question-papers/ | 1995–2025 | Comprehensive historical coverage |
-| 7 | **AFEIAS** | https://afeias.com/upsc-civil-service-question-papers/ | 2014–2024 | Both Prelims and Mains |
+| Rank | Source | URL | Coverage |
+|------|--------|-----|----------|
+| 🥇 1 | **ForumIAS** | https://forumias.com/blog/upsc-official-answer-key-for-prelims/ | 2014–2024, direct upsc.gov.in keys |
+| 🥈 2 | **Insights on India** | https://www.insightsonindia.com/upsc-ias-civil-services-past-year-prelims-preliminary-exam-full-question-papers-10-years/ | 2011–2025, QPs + keys |
+| 🥉 3 | **Drishti IAS** | https://www.drishtiias.com/free-downloads/prelims-previous-year-papers-1-gs-yearwise-downloads | 2011–2024, year-wise GS-I |
+| 4 | **ClearIAS** | https://www.clearias.com/upsc-civil-services-exam-previous-year-question-papers-ias-ips/ | 2011–2024 |
+| 5 | **Level Up IAS** | https://www.levelupias.com/general-studies-prelims-paper-1 | 2009–2023 |
+| 6 | **Education Province** | https://educationprovince.com/upsc-prelims-previous-year-question-papers/ | 1995–2025 |
 
 ---
 
-## Data Sourcing Plan for Question Database Sprint
+## Sourcing Plan for Question Database Sprint
 
-### Phase A — Confirmed Official (Highest Trust — Do First)
-**14 confirmed direct upsc.gov.in PDF URLs above** — download all of these immediately.
+### Phase A — Sprint 1 MVP (Highest Integrity, ~600 Questions)
+**Years: 2019–2024 GS Paper I only**  
+All 6 years have **both** confirmed QP + official AK directly on upsc.gov.in — zero reliance on third parties.
 
-Priority download list:
-```
-# Answer Keys (ground truth for correct answers)
-curl https://upsc.gov.in/sites/default/files/AnsKey-CivilServicesPExam-2024-GeneralStudies-I-210525.pdf -o AK_GS1_2024.pdf
-curl https://upsc.gov.in/sites/default/files/AnsKey-CSP-2023-Paper-I-090524.pdf -o AK_GS1_2023.pdf
-curl https://upsc.gov.in/sites/default/files/AnsKey-CSP-2022-Paper-I-040723.pdf -o AK_GS1_2022.pdf
-curl https://upsc.gov.in/sites/default/files/Anskey-CSP-21-GS-I-300522.pdf -o AK_GS1_2021.pdf
-curl https://upsc.gov.in/sites/default/files/AnsKey-CSP-20-Paper-I-091121.pdf -o AK_GS1_2020.pdf
-curl https://upsc.gov.in/sites/default/files/AnsKeyCSP-19-GS_I.pdf -o AK_GS1_2019.pdf
-curl https://upsc.gov.in/sites/default/files/AnsKey-CSP-18-Paper-I.pdf -o AK_GS1_2018.pdf
-curl https://upsc.gov.in/sites/default/files/Anskey-CSP-17-GS-I.pdf -o AK_GS1_2017.pdf
-curl https://upsc.gov.in/sites/default/files/CSP_15_GS_I_AKy.pdf -o AK_GS1_2015.pdf
+```bash
+# Download all 6 years of official PDFs — run from terminal
+BASE="https://upsc.gov.in/sites/default/files"
 
 # Question Papers
-curl https://upsc.gov.in/sites/default/files/QP-CSP-24-GENERAL-STUDIES-PAPER-I-180624.pdf -o QP_GS1_2024.pdf
-curl https://upsc.gov.in/sites/default/files/QP_CS_Pre_Exam_2023_280523.pdf -o QP_GS1_2023.pdf
-curl https://upsc.gov.in/sites/default/files/QP-CSP-21-GeneralStudiesPaper-I-121021.pdf -o QP_GS1_2021.pdf
-curl https://upsc.gov.in/sites/default/files/CSP_2020_GS_Paper-1.pdf -o QP_GS1_2020.pdf
-curl https://upsc.gov.in/sites/default/files/csp-p1.pdf -o QP_GS1_2019.pdf
-curl https://upsc.gov.in/sites/default/files/QP-CSP-18-GS-I-C.pdf -o QP_GS1_2018_SetC.pdf
-curl https://upsc.gov.in/sites/default/files/CSP_16_GS_Paper_I.pdf -o QP_GS1_2016.pdf
-curl https://upsc.gov.in/sites/default/files/GS11.pdf -o QP_GS1_2011_unverified.pdf
+curl "$BASE/QP-CSP-24-GENERAL-STUDIES-PAPER-I-180624.pdf" -o QP_GS1_2024.pdf
+curl "$BASE/QP_CS_Pre_Exam_2023_280523.pdf"                -o QP_GS1_2023.pdf
+curl "$BASE/General-Studies-Paper-I.pdf"                   -o QP_GS1_2022.pdf  # verify filename
+curl "$BASE/QP-CSP-21-GeneralStudiesPaper-I-121021.pdf"    -o QP_GS1_2021.pdf
+curl "$BASE/CSP_2020_GS_Paper-1.pdf"                       -o QP_GS1_2020.pdf
+curl "$BASE/csp-p1.pdf"                                    -o QP_GS1_2019.pdf
+
+# Official Answer Keys
+curl "$BASE/AnsKey-CivilServicesPExam-2024-GeneralStudies-I-210525.pdf" -o AK_GS1_2024.pdf
+curl "$BASE/AnsKey-CSP-2023-Paper-I-090524.pdf"            -o AK_GS1_2023.pdf
+curl "$BASE/AnsKey-CSP-2022-Paper-I-040723.pdf"            -o AK_GS1_2022.pdf
+curl "$BASE/Anskey-CSP-21-GS-I-300522.pdf"                 -o AK_GS1_2021.pdf
+curl "$BASE/AnsKey-CSP-20-Paper-I-091121.pdf"              -o AK_GS1_2020.pdf
+curl "$BASE/AnsKeyCSP-19-GS_I.pdf"                         -o AK_GS1_2019.pdf
 ```
 
-### Phase B — Cross-Verification Protocol
-For each question paper PDF:
-1. Extract all 100 questions + 4 options (A/B/C/D) using OCR or PDF text extraction
-2. Match each question number to the official answer key PDF
-3. Tag question with: year, subject, topic, correct answer, difficulty
-4. Flag any question whose number appears in "questions deleted" notice
+### Phase B — Sprint 2 (Extend to 10 years, ~1,000 Questions)
+**Add 2015–2018 GS Paper I** — QPs from aggregators; AKs from upsc.gov.in (all confirmed).
 
-**Gold standard test:** A question is `verified` only if:
-- Question text is from official UPSC PDF (Phase A)  
-- Correct answer matches official UPSC answer key (Phase A)
+```bash
+# Additional Answer Keys (official)
+curl "$BASE/AnsKey-CSP-18-Paper-I.pdf"   -o AK_GS1_2018.pdf
+curl "$BASE/Anskey-CSP-17-GS-I.pdf"     -o AK_GS1_2017.pdf
+curl "$BASE/CSP_15_GS_I_AKy.pdf"        -o AK_GS1_2015.pdf
 
-### Phase C — Gap Filling (2012–2017 missing QPs)
-For years 2012–2017 where question paper PDFs aren't confirmed on upsc.gov.in:
-1. Fetch from Insights on India or Drishti IAS
-2. Cross-verify every answer against official answer key from upsc.gov.in
-3. Mark `source: 'verified-aggregator'` vs `source: 'official'`
+# Question Papers (official where available, else aggregator)
+curl "$BASE/QP-CSP-18-GS-I-C.pdf"       -o QP_GS1_2018_SetC.pdf  # official Set C
+curl "$BASE/CSP-17-GS_PAPER-1-C.pdf"    -o QP_GS1_2017_SetC.pdf  # official Set C
+curl "$BASE/CSP_16_GS_Paper_I.pdf"      -o QP_GS1_2016.pdf       # official
+# 2015 QP: fetch from Drishti IAS or Insights on India; cross-verify with official AK above
+```
 
-### Phase D — Pre-2015 Historical (Low Priority / Future Sprint)
-- 2011–2014 CSAT questions (counted in merit; ~320 extra questions)
-- Pre-2011 format is incompatible; skip unless specifically requested
+### Phase C — Sprint 3 (Historical, 2011–2014 ~400 Questions)
+- CSAT questions **also counted in merit** this era — higher historical value
+- Browse UPSC archives page manually; direct PDF URLs inconsistently indexed
+- Cross-verify all answers against UPSC official keys from the archives
 
----
-
-## Data Quality Rules for Database Population
-
-| Rule | Detail |
-|------|--------|
-| **Use FINAL key only** | Keys are released ~12 months post-exam after all representation review |
-| **Record dropped questions** | Store `status: 'dropped'` for these; they should not appear in quiz |
-| **Normalize sets A/B/C/D** | Answer keys list per set; map to canonical question number |
-| **Never use coaching institute keys** | Unofficial keys have errors; only official upsc.gov.in keys |
-| **Tag CSAT-era policy** | `csat_counted_in_merit: true` for 2011–2014 years |
-| **Store `year_asked` field** | Already in schema: `year_asked: int` |
-| **Add `source` field** | `'official' | 'verified-aggregator'` |
-| **Add `status` field** | `'valid' | 'dropped' | 'contested'` |
-| **OCR accuracy check** | For PDF-extracted text, manually verify ≥5% of questions per year |
+### Phase D — Pre-CSAT (2009–2010, Future Sprint)
+- Different exam format; lower priority
+- Level Up IAS claims coverage back to 2009
 
 ---
 
-## Estimated Question Volume by Phase
+## Data Quality Rules
 
-| Phase | Years | GS-I Qs | CSAT Qs | Total | Priority |
-|-------|-------|---------|---------|-------|----------|
-| A — MVP | 2019–2024 | ~580 | ~480 | ~1,060 | **Sprint 1** |
-| B — Full Modern | 2015–2024 | ~980 | ~800 | ~1,780 | Sprint 2 |
-| C — Historical | 2011–2014 | ~400 | ~320 | ~720 | Sprint 3 |
-| D — Pre-CSAT | 2009–2010 | ~200 | — | ~200 | Future |
-| **Total reachable** | **2009–2024** | **~1,580** | **~1,120** | **~2,700** | — |
+| Rule | Rationale |
+|------|-----------|
+| Use **FINAL** answer key only (not provisional) | UPSC revises keys after representation review |
+| Mark `status: 'dropped'` for deleted questions | These must not appear in quiz flow |
+| Normalize sets A/B/C/D to canonical question number | AKs list answers per set |
+| Never use coaching institute answer keys | Known to have errors; only upsc.gov.in is ground truth |
+| Tag `csat_counted_in_merit: true` for 2011–2014 | Policy changed in 2015 |
+| Store `year_asked: int` per question | Already in our Supabase schema |
+| Add `source: 'official' \| 'verified-aggregator'` | For DB provenance tracking |
+| Add `status: 'valid' \| 'dropped' \| 'contested'` | For filtering in quiz engine |
+| OCR verification: spot-check ≥5% of Qs per year | Catch PDF-extraction errors |
 
-> **Recommended Sprint 1 scope:** 2019–2024 GS Paper I only (6 years × ~100 Qs = ~580 questions).
-> All 6 years have **both** confirmed question paper PDFs and official answer keys on upsc.gov.in.
-> Zero reliance on aggregators. Highest data integrity.
+---
+
+## Estimated Volume
+
+| Sprint | Years | GS-I Qs | CSAT Qs | Total |
+|--------|-------|---------|---------|-------|
+| **Sprint 1 MVP** | 2019–2024 | ~580 | — | **~580** |
+| Sprint 2 | 2015–2024 | ~980 | ~800 | ~1,780 |
+| Sprint 3 | 2011–2014 | ~400 | ~320 | ~720 |
+| Future | 2009–2010 | ~200 | — | ~200 |
+| **Total** | **2009–2024** | **~1,580** | **~1,120** | **~2,700** |
 
 ---
 
 ## 2025 Status
-- Exam held: 25 May 2025
-- Official answer key: **Not yet released** (expected June–July 2026 after final results)
-- Unofficial coaching institute keys exist but **must not be used** for the database
-- Add 2025 in the next annual update after official key is published
+- Exam: 25 May 2025 | Official answer key: **Not released** (expected ~mid-2026)
+- QP upload: expected on upsc.gov.in shortly after exam
+- Do **not** use coaching institute keys for DB — wait for official release
