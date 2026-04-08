@@ -47,7 +47,7 @@
 |------|-----------|----------------------------|------------------------|-------------|
 | **2024** | 16 Jun 2024 | [QP GS-I 2024](https://upsc.gov.in/sites/default/files/QP-CSP-24-GENERAL-STUDIES-PAPER-I-180624.pdf) | [AK GS-I 2024](https://upsc.gov.in/sites/default/files/AnsKey-CivilServicesPExam-2024-GeneralStudies-I-210525.pdf) | 21 May 2025 |
 | **2023** | 28 May 2023 | [QP GS-I 2023](https://upsc.gov.in/sites/default/files/QP_CS_Pre_Exam_2023_280523.pdf) | [AK GS-I 2023](https://upsc.gov.in/sites/default/files/AnsKey-CSP-2023-Paper-I-090524.pdf) | 09 May 2024 |
-| **2022** | 05 Jun 2022 | [QP GS-I 2022](https://upsc.gov.in/sites/default/files/General-Studies-Paper-I.pdf) ¹ | [AK GS-I 2022](https://upsc.gov.in/sites/default/files/AnsKey-CSP-2022-Paper-I-040723.pdf) | 04 Jul 2023 |
+| **2022** | 05 Jun 2022 | ⚠️ *Not confirmed — try:* `QP-CSP-22-GeneralStudiesPaper-I-050622.pdf` ³ | [AK GS-I 2022](https://upsc.gov.in/sites/default/files/AnsKey-CSP-2022-Paper-I-040723.pdf) | 04 Jul 2023 |
 | **2021** | 10 Oct 2021 | [QP GS-I 2021](https://upsc.gov.in/sites/default/files/QP-CSP-21-GeneralStudiesPaper-I-121021.pdf) | [AK GS-I 2021](https://upsc.gov.in/sites/default/files/Anskey-CSP-21-GS-I-300522.pdf) | 30 May 2022 |
 | **2020** | 04 Oct 2020 | [QP GS-I 2020](https://upsc.gov.in/sites/default/files/CSP_2020_GS_Paper-1.pdf) | [AK GS-I 2020](https://upsc.gov.in/sites/default/files/AnsKey-CSP-20-Paper-I-091121.pdf) | 09 Nov 2021 |
 | **2019** | 02 Jun 2019 | [QP GS-I 2019](https://upsc.gov.in/sites/default/files/csp-p1.pdf) | [AK GS-I 2019](https://upsc.gov.in/sites/default/files/AnsKeyCSP-19-GS_I.pdf) | — |
@@ -70,9 +70,9 @@
 |------|----------------------------|------------------------|---------|-------|
 | **2024** | [QP CSAT 2024](https://upsc.gov.in/sites/default/files/QP-CSP-24-GENERAL-STUDIES-PAPER-II-180624.pdf) | *(not yet confirmed on upsc.gov.in)* | Standard | Check [answer-key page](https://upsc.gov.in/examinations/answer-key) |
 | **2023** | [QP CSAT 2023](https://upsc.gov.in/sites/default/files/QP_CS_Pre_Exam_2023_GENERAL_STUDIES_PAPER_II_280523.pdf) | [AK CSAT 2023](https://upsc.gov.in/sites/default/files/AnsKey-CSP-2023-Paper-II-090524.pdf) | Standard | — |
-| **2022** | [QP CSAT 2022](https://upsc.gov.in/sites/default/files/Paper-II.pdf) ¹ | [AK CSAT 2022](https://upsc.gov.in/sites/default/files/AnsKey-CSP-2022-Paper-II-040723.pdf) | Standard | — |
+| **2022** | ⚠️ *Not confirmed* — `Paper-II.pdf` may be 2019 CSAT ³ | [AK CSAT 2022](https://upsc.gov.in/sites/default/files/AnsKey-CSP-2022-Paper-II-040723.pdf) | Standard | — |
 | **2021** | [QP CSAT 2021](https://upsc.gov.in/sites/default/files/QP-CSP-21-GeneralStudiesPaper-II-121021.pdf) | [AK CSAT 2021](https://upsc.gov.in/sites/default/files/Anskey-CSP-21-GS-II-300522.pdf) | Standard | — |
-| **2020** | *(browse [2020 exam page](https://upsc.gov.in/examinations/Civil%20Services%20(Preliminary)%20Examination,%202020))* | [AK CSAT 2020](https://upsc.gov.in/sites/default/files/AnsKey-CSP-20-Paper-II-091121.pdf) | Standard | — |
+| **2020** | *(not confirmed — try `CSP_2020_GS_Paper-2.pdf` ³)* | [AK CSAT 2020](https://upsc.gov.in/sites/default/files/AnsKey-CSP-20-Paper-II-091121.pdf) | Standard | — |
 | **2019** | [QP CSAT 2019](https://upsc.gov.in/sites/default/files/csp-p2.pdf) ² | [AK CSAT 2019](https://upsc.gov.in/sites/default/files/AnsKeyCSP-19-GS_II.pdf) | Standard | — |
 | **2018** | [QP CSAT 2018 Set C](https://upsc.gov.in/sites/default/files/QP-CSP-18-GS-II-C.pdf) | [AK CSAT 2018](https://upsc.gov.in/sites/default/files/AnsKey-CSP-18-Paper-II.pdf) | Standard | — |
 | **2018** | *(same QP)* | [AK CSAT 2018 PWD](https://upsc.gov.in/sites/default/files/AnsKey-CSP-18-Paper-II-PWD.pdf) | **PWD Variant** | Persons with disabilities |
@@ -85,9 +85,11 @@
 
 ---
 
-> ¹ **2022 generic filenames** — `General-Studies-Paper-I.pdf` and `Paper-II.pdf` are confirmed as 2022 Prelims papers by search indexing context. Verify before use as UPSC occasionally reuses generic names.
+> ¹ *(footnote removed — see ³ below)*
 >
 > ² **Inferred URLs** — derived from confirmed naming patterns; verify by attempting direct download before using in production.
+>
+> ³ **2022 QP status — NOT CONFIRMED:** Extensive search found zero indexed `QP-CSP-22-*` question paper filenames for 2022 Prelims. `General-Studies-Paper-I.pdf` and `Paper-II.pdf` originally listed as 2022 could be any year — UPSC reuses generic names. Only the 2022 answer keys are confirmed. To find the real 2022 QP URL, visit `https://upsc.gov.in/examinations/Civil%20Services%20(Preliminary)%20Examination,%202022` in a browser and inspect the download links. Guessed filename pattern to try (unverified): `QP-CSP-22-GeneralStudiesPaper-I-050622.pdf`. Similarly for 2020 CSAT, try `CSP_2020_GS_Paper-2.pdf` (mirrors confirmed GS Paper I naming).
 
 ---
 
@@ -136,7 +138,7 @@ BASE="https://upsc.gov.in/sites/default/files"
 # Question Papers
 curl "$BASE/QP-CSP-24-GENERAL-STUDIES-PAPER-I-180624.pdf" -o QP_GS1_2024.pdf
 curl "$BASE/QP_CS_Pre_Exam_2023_280523.pdf"                -o QP_GS1_2023.pdf
-curl "$BASE/General-Studies-Paper-I.pdf"                   -o QP_GS1_2022.pdf  # verify filename
+curl "$BASE/QP-CSP-22-GeneralStudiesPaper-I-050622.pdf"    -o QP_GS1_2022.pdf  # ⚠️ UNVERIFIED GUESS — visit 2022 exam page in browser to get real URL first
 curl "$BASE/QP-CSP-21-GeneralStudiesPaper-I-121021.pdf"    -o QP_GS1_2021.pdf
 curl "$BASE/CSP_2020_GS_Paper-1.pdf"                       -o QP_GS1_2020.pdf
 curl "$BASE/csp-p1.pdf"                                    -o QP_GS1_2019.pdf
